@@ -29,14 +29,14 @@ public abstract class PaginaWebSIS extends WebPage implements Serializable{
     
     public PaginaWebSIS(IModel model) {
         super(model);
-        add(new Label("titulo","SISDOCAG WEB"));
+        add(new Label("titulo","Sistema Integral"));
         add(new Include("menunav", "MenuNav.html"));
     }
     public PaginaWebSIS(){
         super(new Model());
-        add(new Label("titulo","SISDOCAG WEB"));
+        add(new Label("titulo","Sistema Integral"));
         add(new Include("menunav", "MenuNav.html"));
-    }
+    }   
     @Override
     public void renderHead(IHeaderResponse response) {
         response.render(JavaScriptReferenceHeaderItem.forReference(jquery));

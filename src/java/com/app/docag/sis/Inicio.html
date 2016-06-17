@@ -8,7 +8,13 @@
             <title wicket:id="titulo"></title> 
         </wicket:head> 
     </head> 
-    <body> 
-        <button wicket:id="configurar"> </button>
+    <body>
+        <div class="container">
+            <div wicket:id="menunav">menu</div>
+            <wicket:child/>
+            <a wicket:id="configurar" class="btn btn-lg btn-primary" role="button">
+                <span wicket:id="lblconfigurar"/>
+            </a>
+        </div>        
     </body> 
 </html>
