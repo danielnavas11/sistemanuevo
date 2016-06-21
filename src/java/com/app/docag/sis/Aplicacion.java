@@ -47,6 +47,9 @@ public class Aplicacion extends AuthenticatedWebApplication implements Serializa
         if (packageResourceGuard instanceof SecurePackageResourceGuard){
             SecurePackageResourceGuard guard = (SecurePackageResourceGuard)packageResourceGuard;
             guard.addPattern("+*.map");
+            guard.addPattern("+*.ttf");
+            guard.addPattern("+*.woff");
+            guard.addPattern("+*.woff2");
         } 
     }
 

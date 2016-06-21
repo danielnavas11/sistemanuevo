@@ -38,12 +38,14 @@ public abstract class PaginaWebSIS extends WebPage implements Serializable{
         add(new Include("menunav", "MenuNav.html"));
     }   
     @Override
-    public void renderHead(IHeaderResponse response) {
+    public void renderHead(IHeaderResponse response) {   
         response.render(JavaScriptReferenceHeaderItem.forReference(jquery));
         response.render(JavaScriptReferenceHeaderItem.forReference(bootstrap));        
         response.render(JavaScriptReferenceHeaderItem.forReference(formvalidador));        
         response.render(CssHeaderItem.forReference(new PackageResourceReference(css.Css.class, "bootstrap2.css")));
         response.render(CssHeaderItem.forReference(new PackageResourceReference(css.Css.class, "bootstrap_modal.css")));
+        response.render(CssHeaderItem.forReference(new PackageResourceReference(css.Css.class, "material-design-iconic-font.css")));
+        response.render(CssHeaderItem.forReference(new PackageResourceReference(css.Css.class, "jquery.css")));
         response.render(CssHeaderItem.forReference(new PackageResourceReference(js.formvalidador.Js.class, "messages.css")));
     }
 }
