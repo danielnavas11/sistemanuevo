@@ -6,15 +6,20 @@
     <head> 
         <wicket:head> 
             <title wicket:id="titulo"></title> 
-        </wicket:head> 
+        </wicket:head>
+        
     </head> 
     <body>
-        <div class="container">
-            <div wicket:id="menunav">menu</div>
-            <wicket:child/>
-            <a wicket:id="configurar" class="btn btn-lg btn-primary" role="button">
-                <span wicket:id="lblconfigurar"/>
-            </a>
-        </div>        
+
+        <div class="body"></div>
+                    <div class="grad"></div>
+                    <div class="header">
+                            <div>Inicia<span>Sesion</span></div>
+                    </div>
+                    <div class="login">
+                                    <input type="text" placeholder="USUARIO" name="user"><br>
+                                    <input type="password" placeholder="PASSWORD" name="password"><br>
+                                    <input type="button" value="Iniciar Sesion">
+        </div>
     </body> 
 </html>
