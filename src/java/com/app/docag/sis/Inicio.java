@@ -24,7 +24,7 @@ public class Inicio extends PaginaWebSIS implements Serializable{
             }
         };
         configurar.setOutputMarkupId(true);
-        configurar.add(new Label("lblconfigurar",Model.of("Configurar")));
+        configurar.add(new Label("lblconfigurar",Model.of("Configurar el boton")));
         add(configurar);
     }
 
