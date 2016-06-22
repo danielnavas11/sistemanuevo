@@ -17,7 +17,7 @@ public class Inicio extends PaginaWebSIS implements Serializable{
            setResponsePage(ConfigurarOpciones.class);
         }*/
         //add(new Label("configurar", "Configurar"));
-        AjaxLink configurar=new AjaxLink("configurar") {            
+        /*AjaxLink configurar=new AjaxLink("configurar") {            
             @Override
             public void onClick(AjaxRequestTarget art) {                
                 System.out.println("Click");
@@ -25,7 +25,7 @@ public class Inicio extends PaginaWebSIS implements Serializable{
         };
         configurar.setOutputMarkupId(true);
         configurar.add(new Label("lblconfigurar",Model.of("Configurar el boton")));
-        add(configurar);
+        add(configurar);*/
     }
 
 }
