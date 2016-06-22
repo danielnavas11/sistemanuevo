@@ -1,25 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"  
-      xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd"  
-      xml:lang="en"  
-      lang="en"> 
-    <head> 
-        <wicket:head> 
-            <title wicket:id="titulo"></title> 
-        </wicket:head>
-        
-    </head> 
-    <body class="container">
-
-        <div class="body"></div>
-                    <div class="grad"></div>
-                    <div class="header">
-                            <div>Inicia<span>Sesion</span></div>
-                    </div>
-                    <div class="login">
-                                    <input type="text" placeholder="USUARIO" name="user"><br>
-                                    <input type="password" placeholder="PASSWORD" name="password"><br>
-                                    <input type="button" value="Iniciar Sesion">
-                    </div>
-    </body> 
-</html>
+<wicket:extend>
+    <div class="body"></div>
+        <div class="grad"></div>
+        <div class="header">
+            <div>Inicia
+                <span>Sesion</span>
+            </div>
+        </div>
+        <div class="login">
+            <input type="text" placeholder="USUARIO" name="user"><br>
+            <input type="password" placeholder="PASSWORD" name="password"><br>
+            <input type="button" value="Iniciar Sesion">
+        </div>
+</wicket:extend>
