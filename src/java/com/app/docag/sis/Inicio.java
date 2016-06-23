@@ -46,7 +46,7 @@ public class Inicio extends PaginaWebSIS implements Serializable{
         AjaxLink btnacceptar=new AjaxLink("btnacceptar") {            
             @Override
             public void onClick(AjaxRequestTarget art) {                
-                //modal.show(art);
+                System.out.println("btnacceptar.onClick()");
             }
         };
         
