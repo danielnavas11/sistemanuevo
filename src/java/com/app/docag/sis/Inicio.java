@@ -58,16 +58,6 @@ public class Inicio extends PaginaWebSIS implements Serializable{
         btnacceptar.add(new Label("lblbtnacceptar", Model.of(getSesionSIS().getValorBundleLocaleIdioma("inicio.acceptar"))));
         add(btnacceptar);
         
-        /*Image avatar = new Image("avatarLogin",Model.of(""));
-        avatar.add(new AttributeModifier("src", true, new AbstractReadOnlyModel<Object>() {
-            @Override
-            public final Object getObject() {
-                return "imagenes/userIcon.png";
-            }
-        }));
-        avatar.setOutputMarkupId(true);
-        add(avatar);*/
-        //add(new Image("avatarLogin", new ContextRelativeResource("imagenes/userIcon.png")));
         add(new Image("avatarLogin",new PackageResourceReference(imagenes.Imagenes.class, "userIcon.png")));
     }
 
