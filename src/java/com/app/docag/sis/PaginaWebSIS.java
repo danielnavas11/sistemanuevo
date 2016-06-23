@@ -23,19 +23,19 @@ public abstract class PaginaWebSIS extends WebPage implements Serializable{
     private static final JavaScriptResourceReference bootstrap = new JavaScriptResourceReference(js.Js.class, "bootstrap2.js");
     private static final JavaScriptResourceReference formvalidador = new JavaScriptResourceReference(js.formvalidador.Js.class, "messages.js");
     
-    public WebSesion getSesionERP() {
+    public WebSesion getSesionSIS() {
         return (WebSesion) getSession();
     }
     
     public PaginaWebSIS(IModel model) {
         super(model);
-        add(new Label("titulo","Sistema Integral"));
-        add(new Include("menunav", "MenuNav.html"));
+        add(new Label("titulo","DGO Software"));
+        add(new Include("header", "MenuNav.html"));
     }
     public PaginaWebSIS(){
         super(new Model());
-        add(new Label("titulo","Sistema Integral"));
-        add(new Include("menunav", "MenuNav.html"));
+        add(new Label("titulo","DGO Software"));
+        add(new Include("header", "MenuNav.html"));
     }   
     @Override
     public void renderHead(IHeaderResponse response) {   
@@ -46,6 +46,9 @@ public abstract class PaginaWebSIS extends WebPage implements Serializable{
         response.render(CssHeaderItem.forReference(new PackageResourceReference(css.Css.class, "bootstrap_modal.css")));
         response.render(CssHeaderItem.forReference(new PackageResourceReference(css.Css.class, "material-design-iconic-font.css")));
         response.render(CssHeaderItem.forReference(new PackageResourceReference(css.Css.class, "jquery.css")));
+        response.render(CssHeaderItem.forReference(new PackageResourceReference(css.Css.class, "login.css")));
+        response.render(CssHeaderItem.forReference(new PackageResourceReference(css.Css.class, "style1.css")));
+        response.render(CssHeaderItem.forReference(new PackageResourceReference(css.Css.class, "style2.css")));
         response.render(CssHeaderItem.forReference(new PackageResourceReference(js.formvalidador.Js.class, "messages.css")));
     }
 }

@@ -26,9 +26,9 @@ public class ConfigurarOpciones extends PaginaWebSIS implements Serializable{
     public ConfigurarOpciones() {
         
         final ModalConfigurarOpciones modal=new ModalConfigurarOpciones("modalConfigurarERP");
-        modal.setTitulo(getSesionERP().getValorBundleLocaleIdioma("inicio.configurar.modal.titulo"));
+        modal.setTitulo(getSesionSIS().getValorBundleLocaleIdioma("inicio.configurar.modal.titulo"));
         modal.show(true);
-        modal.addButton(new AjaxLink<String>("button", Model.of(getSesionERP().getValorBundleLocaleIdioma("inicio.configurar.boton.guardar"))) {
+        modal.addButton(new AjaxLink<String>("button", Model.of(getSesionSIS().getValorBundleLocaleIdioma("inicio.configurar.boton.guardar"))) {
             @Override
             protected void onConfigure() {
                 super.onConfigure();
@@ -65,7 +65,7 @@ public class ConfigurarOpciones extends PaginaWebSIS implements Serializable{
                 }               
             }
         });
-        modal.addButton(new AjaxLink<String>("button", Model.of(getSesionERP().getValorBundleLocaleIdioma("inicio.configurar.boton.cerrar"))) {
+        modal.addButton(new AjaxLink<String>("button", Model.of(getSesionSIS().getValorBundleLocaleIdioma("inicio.configurar.boton.cerrar"))) {
             @Override
             protected void onConfigure() {
                 super.onConfigure();
