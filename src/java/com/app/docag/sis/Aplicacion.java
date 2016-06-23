@@ -37,7 +37,8 @@ public class Aplicacion extends AuthenticatedWebApplication implements Serializa
         getSecuritySettings().setCryptFactory(new ClassCryptFactory(AbstractCrypt.class,ISecuritySettings.DEFAULT_ENCRYPTION_KEY));
         
         getDebugSettings().setAjaxDebugModeEnabled(false);
-        mountPage("/Inicio",Inicio.class); 
+        mountPage("/Inicio",Inicio.class);
+        mountPage("/Home",Home.class); 
         getDebugSettings().setOutputComponentPath(true);
         getDebugSettings().setDevelopmentUtilitiesEnabled(true);
 

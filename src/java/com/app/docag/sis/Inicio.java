@@ -15,10 +15,12 @@ import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.include.Include;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.resource.ContextRelativeResource;
 import org.apache.wicket.request.resource.PackageResourceReference;
 public class Inicio extends PaginaWebSIS implements Serializable{
-
+    TextField usuario;
+    private String usuariotext;
     public Inicio() {
         /*if(Configurar.ERPConfigurado()){
             log_erp.info("Configuracion:".concat(Configurar.obtenerParametrosConfiguracion()));
@@ -37,8 +39,9 @@ public class Inicio extends PaginaWebSIS implements Serializable{
         configurar.add(new Label("lblconfigurar",Model.of("Configurar")));
         add(configurar);
         */
-        TextField usuario = new TextField("usuario");
+        usuario = new TextField("usuario",new PropertyModel<String>(this, "usuariotext"));
         usuario.setRequired(true);
+        usuario.setOutputMarkupId(true);
         usuario.add(new AttributeAppender("placeholder", getSesionSIS().getValorBundleLocaleIdioma("inicio.usuario")));
         add(usuario);
         
@@ -52,6 +55,11 @@ public class Inicio extends PaginaWebSIS implements Serializable{
             @Override
             public void onClick(AjaxRequestTarget art) {                
                 System.out.println("btnacceptar.onClick()");
+                Home welcomePage = new Home();
+                getSesionSIS().setAttribute("usuario", usuariotext);
+                getSession().setAttribute("usuario", usuariotext);
+                welcomePage.setUserId(usuariotext);
+                setResponsePage(welcomePage);
             }
         };
         
