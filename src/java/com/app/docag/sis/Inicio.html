@@ -20,22 +20,35 @@
                                 <img wicket:id="avatarLogin" style="height: 60px;width: 60px;border-radius: 50%;"/>
                             </div>  
                         </center>
-                        <div style="color: rgba(0, 0, 0, 0.87); display: block; font-size: 16px; line-height: 16px; position: relative; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; margin-left: 0px; padding: 20px 16px 20px 92px;" is="null">
+                        <div style="color: rgba(0, 0, 0, 0.87); 
+                             display: block; 
+                             font-size: 16px; 
+                             line-height: 16px; 
+                             position: relative; 
+                             transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; 
+                             margin-left: 25%;" is="null">
                             <!-- react-text: 631 -->Login DGO Software<!-- /react-text -->                                                          
                         </div>                        
                     </div>
                     <div class="modal-body">
                         <form class="form col-md-12 center-block" wicket:id="form_login">
-                            <div class="form-group">
+                            <div class="form-group" style="margin-bottom: 0px;">
                                 <input class="form-control input-lg" placeholder="" wicket:id="usuario" type="text"/>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="margin-bottom: 0px;">
                                 <input class="form-control input-lg" placeholder="" wicket:id="clave" type="password"/>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="margin-bottom: 0px;">
                                 <a wicket:id="btnacceptar" class="btn btn-primary btn-lg btn-block" role="button">
                                     <span wicket:id="lblbtnacceptar"/>
                                 </a>
+                                <br>
+                                <center>
+                                    <span style="text-align: center">
+                                        &#191;Todav&iacute;a no eres usuario&#63;
+                                        <a href="">&Uacute;nete ahora</a>
+                                    </span>
+                                </center>
                             </div>
                         </form>
                     </div>
