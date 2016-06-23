@@ -13,7 +13,7 @@ public class Home extends PaginaWebSIS implements Serializable {
     private String userId,userClave;
 
     public Home() {
-        add(new Image("avatarPerfil",new PackageResourceReference(imagenes.Imagenes.class, "perfil1.jpg")));
+        add(new Image("avatarPerfil",new PackageResourceReference(imagenes.Imagenes.class, "userIcon.png")));
     }
 
     public String getUserId() {

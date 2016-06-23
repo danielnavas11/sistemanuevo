@@ -23,6 +23,8 @@ public abstract class PaginaWebSIS extends WebPage implements Serializable{
     private static final JavaScriptResourceReference bootstrap = new JavaScriptResourceReference(js.Js.class, "bootstrap2.js");
     private static final JavaScriptResourceReference formvalidador = new JavaScriptResourceReference(js.formvalidador.Js.class, "messages.js");
     
+    private static final JavaScriptResourceReference materialize = new JavaScriptResourceReference(materialui.Js.class, "materialize.js");
+    
     public WebSesion getSesionSIS() {
         return (WebSesion) getSession();
     }
@@ -41,7 +43,10 @@ public abstract class PaginaWebSIS extends WebPage implements Serializable{
     public void renderHead(IHeaderResponse response) {   
         response.render(JavaScriptReferenceHeaderItem.forReference(jquery));
         response.render(JavaScriptReferenceHeaderItem.forReference(bootstrap));        
-        response.render(JavaScriptReferenceHeaderItem.forReference(formvalidador));        
+        response.render(JavaScriptReferenceHeaderItem.forReference(formvalidador));
+        
+        response.render(JavaScriptReferenceHeaderItem.forReference(materialize));
+        
         response.render(CssHeaderItem.forReference(new PackageResourceReference(css.Css.class, "bootstrap2.css")));
         response.render(CssHeaderItem.forReference(new PackageResourceReference(css.Css.class, "bootstrap_modal.css")));
         response.render(CssHeaderItem.forReference(new PackageResourceReference(css.Css.class, "material-design-iconic-font.css")));
@@ -49,6 +54,9 @@ public abstract class PaginaWebSIS extends WebPage implements Serializable{
         response.render(CssHeaderItem.forReference(new PackageResourceReference(css.Css.class, "login.css")));
         response.render(CssHeaderItem.forReference(new PackageResourceReference(css.Css.class, "style1.css")));
         response.render(CssHeaderItem.forReference(new PackageResourceReference(css.Css.class, "style2.css")));
+        
+        response.render(CssHeaderItem.forReference(new PackageResourceReference(materialui.Css.class, "materialize.css")));
+        
         response.render(CssHeaderItem.forReference(new PackageResourceReference(js.formvalidador.Js.class, "messages.css")));
     }
 }
