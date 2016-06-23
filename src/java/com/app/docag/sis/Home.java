@@ -6,20 +6,28 @@ import java.io.Serializable;
  *
  * @author daniel
  */
-public class Home extends PaginaWebSIS implements Serializable{
-    private String userId;
+public class Home extends PaginaWebSIS implements Serializable {
 
-   public Home(){
-       System.out.println("getUserId:"+getSesionSIS().getAttribute("usuario"));
-       System.out.println("getUserId:"+getSession().getAttribute("usuario"));
-       System.out.println("getUserId:"+getUserId());
-   }
+    private String userId,userClave;
 
-   public String getUserId() {
-     return userId;
-   }
+    public Home() {
+    }
 
-   public void setUserId(String userId) {
-     this.userId = userId;
-   }
+    public String getUserId() {
+        return userId;
+    }
+    
+    public String getUserClave() {
+        return userClave;
+    }
+    
+    public void setUserClave(String userClave) {
+        this.userClave = userClave;
+        System.out.println("getUserClave:" + getUserClave());
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+        System.out.println("getUserId:" + getUserId());
+    }
 }

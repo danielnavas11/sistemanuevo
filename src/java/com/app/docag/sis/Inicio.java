@@ -6,9 +6,11 @@ import java.io.Serializable;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.form.Button;
+import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.image.Image;
@@ -19,8 +21,10 @@ import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.resource.ContextRelativeResource;
 import org.apache.wicket.request.resource.PackageResourceReference;
 public class Inicio extends PaginaWebSIS implements Serializable{
-    TextField usuario;
-    private String usuariotext;
+    final TextField usuario;
+    final PasswordTextField clave;
+    private String usuariotext,clavetext;
+    
     public Inicio() {
         /*if(Configurar.ERPConfigurado()){
             log_erp.info("Configuracion:".concat(Configurar.obtenerParametrosConfiguracion()));
@@ -39,34 +43,51 @@ public class Inicio extends PaginaWebSIS implements Serializable{
         configurar.add(new Label("lblconfigurar",Model.of("Configurar")));
         add(configurar);
         */
-        usuario = new TextField("usuario",new PropertyModel<String>(this, "usuariotext"));
+        Form<Void> form_login = new Form<Void> ("form_login");
+        
+        
+        usuario = new TextField<String>("usuario",Model.of(""));
         usuario.setRequired(true);
         usuario.setOutputMarkupId(true);
+        usuario.add(new AjaxFormComponentUpdatingBehavior("change") {
+            @Override
+            protected void onUpdate(AjaxRequestTarget target) {
+                usuariotext=usuario.getInput();
+            }
+        });
         usuario.add(new AttributeAppender("placeholder", getSesionSIS().getValorBundleLocaleIdioma("inicio.usuario")));
-        add(usuario);
+        form_login.add(usuario);
         
-        PasswordTextField clave = new PasswordTextField("clave");
+        clave = new PasswordTextField("clave",Model.of(""));
         clave.setRequired(true);
+        clave.setOutputMarkupId(true);
+        clave.add(new AjaxFormComponentUpdatingBehavior("change") {
+            @Override
+            protected void onUpdate(AjaxRequestTarget target) {
+                clavetext=clave.getInput();
+            }
+        });
         clave.add(new AttributeAppender("placeholder", getSesionSIS().getValorBundleLocaleIdioma("inicio.clave")));
-        add(clave);
-        
+        form_login.add(clave);
                
         AjaxLink btnacceptar=new AjaxLink("btnacceptar") {            
             @Override
             public void onClick(AjaxRequestTarget art) {                
                 System.out.println("btnacceptar.onClick()");
-                Home welcomePage = new Home();
-                getSesionSIS().setAttribute("usuario", usuariotext);
-                getSession().setAttribute("usuario", usuariotext);
-                welcomePage.setUserId(usuariotext);
-                setResponsePage(welcomePage);
+                Home home = new Home();
+                home.setUserId(usuariotext);
+                home.setUserClave(clavetext);
+                setResponsePage(home);
             }
         };
         
         btnacceptar.add(new Label("lblbtnacceptar", Model.of(getSesionSIS().getValorBundleLocaleIdioma("inicio.acceptar"))));
-        add(btnacceptar);
+        //add(btnacceptar);
+        form_login.add(btnacceptar);
         
         add(new Image("avatarLogin",new PackageResourceReference(imagenes.Imagenes.class, "userIcon.png")));
+        
+        add(form_login);
     }
 
 }
