@@ -3,6 +3,7 @@ package com.app.docag.sis;
 import org.apache.wicket.markup.html.basic.Label;
 import static com.app.docag.sis.Aplicacion.log_erp;
 import java.io.Serializable;
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
@@ -10,8 +11,12 @@ import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.include.Include;
+import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.request.resource.ContextRelativeResource;
+import org.apache.wicket.request.resource.PackageResourceReference;
 public class Inicio extends PaginaWebSIS implements Serializable{
 
     public Inicio() {
@@ -52,6 +57,18 @@ public class Inicio extends PaginaWebSIS implements Serializable{
         
         btnacceptar.add(new Label("lblbtnacceptar", Model.of(getSesionSIS().getValorBundleLocaleIdioma("inicio.acceptar"))));
         add(btnacceptar);
+        
+        /*Image avatar = new Image("avatarLogin",Model.of(""));
+        avatar.add(new AttributeModifier("src", true, new AbstractReadOnlyModel<Object>() {
+            @Override
+            public final Object getObject() {
+                return "imagenes/userIcon.png";
+            }
+        }));
+        avatar.setOutputMarkupId(true);
+        add(avatar);*/
+        //add(new Image("avatarLogin", new ContextRelativeResource("imagenes/userIcon.png")));
+        add(new Image("avatarLogin",new PackageResourceReference(imagenes.Imagenes.class, "userIcon.png")));
     }
 
 }
