@@ -2545,69 +2545,6 @@ span.badge {
 .no-padding {
   padding: 0 !important; }
 
-[class^="mdi-"], [class*="mdi-"] {
-  speak: none;
-  display: inline-block;
-  text-rendering: auto;
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  transform: translate(0, 0); }
-  [class^="mdi-"]:before, [class*="mdi-"]:before {
-    display: inline-block;
-    speak: none;
-    text-decoration: inherit; }
-  [class^="mdi-"].pull-left, [class*="mdi-"].pull-left {
-    margin-right: .3em; }
-  [class^="mdi-"].pull-right, [class*="mdi-"].pull-right {
-    margin-left: .3em; }
-  [class^="mdi-"].mdi-lg:before, [class^="mdi-"].mdi-lg:after, [class*="mdi-"].mdi-lg:before, [class*="mdi-"].mdi-lg:after {
-    font-size: 1.33333333em;
-    line-height: 0.75em;
-    vertical-align: -15%; }
-  [class^="mdi-"].mdi-2x:before, [class^="mdi-"].mdi-2x:after, [class*="mdi-"].mdi-2x:before, [class*="mdi-"].mdi-2x:after {
-    font-size: 2em; }
-  [class^="mdi-"].mdi-3x:before, [class^="mdi-"].mdi-3x:after, [class*="mdi-"].mdi-3x:before, [class*="mdi-"].mdi-3x:after {
-    font-size: 3em; }
-  [class^="mdi-"].mdi-4x:before, [class^="mdi-"].mdi-4x:after, [class*="mdi-"].mdi-4x:before, [class*="mdi-"].mdi-4x:after {
-    font-size: 4em; }
-  [class^="mdi-"].mdi-5x:before, [class^="mdi-"].mdi-5x:after, [class*="mdi-"].mdi-5x:before, [class*="mdi-"].mdi-5x:after {
-    font-size: 5em; }
-
-[class^="mdi-device-signal-cellular-"]:after,
-[class^="mdi-device-battery-"]:after,
-[class^="mdi-device-battery-charging-"]:after,
-[class^="mdi-device-signal-cellular-connected-no-internet-"]:after,
-[class^="mdi-device-signal-wifi-"]:after,
-[class^="mdi-device-signal-wifi-statusbar-not-connected"]:after,
-.mdi-device-network-wifi:after {
-  opacity: .3;
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 1;
-  display: inline-block;
-  speak: none;
-  text-decoration: inherit; }
-
-[class^="mdi-device-signal-cellular-"]:after {
-  content: "\e758"; }
-
-[class^="mdi-device-battery-"]:after {
-  content: "\e735"; }
-
-[class^="mdi-device-battery-charging-"]:after {
-  content: "\e733"; }
-
-[class^="mdi-device-signal-cellular-connected-no-internet-"]:after {
-  content: "\e75d"; }
-
-[class^="mdi-device-signal-wifi-"]:after, .mdi-device-network-wifi:after {
-  content: "\e765"; }
-
-[class^="mdi-device-signal-wifi-statusbasr-not-connected"]:after {
-  content: "\e8f7"; }
-
 .mdi-device-signal-cellular-off:after, .mdi-device-signal-cellular-null:after, .mdi-device-signal-cellular-no-sim:after, .mdi-device-signal-wifi-off:after, .mdi-device-signal-wifi-4-bar:after, .mdi-device-signal-cellular-4-bar:after, .mdi-device-battery-alert:after, .mdi-device-signal-cellular-connected-no-internet-4-bar:after, .mdi-device-battery-std:after, .mdi-device-battery-full .mdi-device-battery-unknown:after {
   content: ""; }
 
@@ -8450,7 +8387,14 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 }
 
 
-body {
-    display: table-cell;
+body {    
     vertical-align: middle;
+}
+
+/*Container home*/
+.container {
+    padding: 0px 0.5rem;
+    margin: 0px auto;
+    max-width: 100% !important;
+    width: 98%;
 }

@@ -54,6 +54,7 @@ public abstract class PaginaWebSIS extends WebPage implements Serializable{
         response.render(CssHeaderItem.forReference(new PackageResourceReference(css.Css.class, "login.css")));
         response.render(CssHeaderItem.forReference(new PackageResourceReference(css.Css.class, "style1.css")));
         response.render(CssHeaderItem.forReference(new PackageResourceReference(css.Css.class, "style2.css")));
+        response.render(CssHeaderItem.forReference(new PackageResourceReference(css.Css.class, "fullcalendar.css")));
         
         response.render(CssHeaderItem.forReference(new PackageResourceReference(materialui.Css.class, "materialize.css")));
         

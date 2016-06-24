@@ -1,5 +1,6 @@
 package com.app.docag.sis;
 
+import com.app.docag.sis.home.HomeSeccion1;
 import java.io.Serializable;
 import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.request.resource.PackageResourceReference;
@@ -14,6 +15,7 @@ public class Home extends PaginaWebSIS implements Serializable {
 
     public Home() {
         add(new Image("avatarPerfil",new PackageResourceReference(imagenes.Imagenes.class, "userIcon.png")));
+        add(new HomeSeccion1("HomeSeccion1"));
     }
 
     public String getUserId() {
