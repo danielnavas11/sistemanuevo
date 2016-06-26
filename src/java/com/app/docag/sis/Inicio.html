@@ -1,10 +1,10 @@
 <wicket:extend>
-    <div class="">
+<div class="container">
+    <div class="card-home">
         <div class="card-header">
-            <div class="modal-dialog" style="width: 400px;">
-                <div class="modal-content" >
-                    <div class="modal-header">
-                        <center>
+            <div class="modal-dialog">
+                <div class="modal-content" style="border: 0;">
+                    <div class="modal-header" wicket:id="modalheader" style="">
                             <div style="color: rgb(255, 255, 255); 
                                  background-color: rgb(188, 188, 188); 
                                  display: inline-flex; 
@@ -18,8 +18,7 @@
                                  left: 16px; 
                                  -moz-user-select: none;" size="40" is="null">
                                 <img wicket:id="avatarLogin" style="height: 60px;width: 60px;border-radius: 50%;"/>
-                            </div>  
-                        </center>
+                            </div> 
                         <div style="color: rgba(0, 0, 0, 0.87); 
                              display: block; 
                              font-size: 16px; 
@@ -32,20 +31,20 @@
                     </div>
                     <div class="modal-body">
                         <form class="form col-md-12 center-block" wicket:id="form_login">
-                            <div class="form-group" style="margin-bottom: 0px;">
+                            <div class="form-group">
                                 <input class="form-control input-lg" placeholder="" wicket:id="usuario" type="text"/>
                             </div>
-                            <div class="form-group" style="margin-bottom: 0px;">
+                            <div class="form-group">
                                 <input class="form-control input-lg" placeholder="" wicket:id="clave" type="password"/>
-                            </div>
-                            <div class="form-group" style="margin-bottom: 0px;">
+                            </div><br><br>
+                            <div class="form-group">
                                 <a wicket:id="btnacceptar" class="btn btn-primary btn-lg btn-block" role="button">
                                     <span wicket:id="lblbtnacceptar"/>
                                 </a>
                                 <br>
                                 <center>
                                     <span style="text-align: center">
-                                        <a href="">Crear cuenta</a>
+                                        <!--<a href="">Crear cuenta</a>-->
                                     </span>
                                 </center>
                             </div>
@@ -55,18 +54,21 @@
             </div>
         </div>
     </div>
+</div>
     <style>	
 	/*Pagina Centrada*/
 	html,
 	body {
 	    height: 100%;
+	    width: 100%;
+	    background: white;
 	}
 	html {
-	    display: table;
 	    margin: auto;
 	}
     </style>
     <script>
-        $("header").css("display","none");
+	$("#header").css("z-index","0");
+	$("#sidebarID").parent().css("display","none");
     </script>
 </wicket:extend>

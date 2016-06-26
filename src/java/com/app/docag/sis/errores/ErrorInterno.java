@@ -1,21 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.app.docag.sis.errores;
 
+import com.app.docag.sis.Inicio;
+import com.app.docag.sis.PaginaWebSIS;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.AjaxLink;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.request.http.WebResponse;
+
+import org.apache.wicket.model.Model;
 
 /**
  *
  * @author Daniel Navas
  */
-public final class ErrorInterno extends WebPage{
+public final class ErrorInterno extends PaginaWebSIS{
     public ErrorInterno() {
+        AjaxLink btnacceptar=new AjaxLink("linkinicio") {            
+            @Override
+            public void onClick(AjaxRequestTarget art) {
+                setResponsePage(new Inicio());
+            }
+        };
+        
+        btnacceptar.add(new Label("lbllinkinicio", Model.of("Homepage")));
+        add(btnacceptar);
     }
 
     @Override
@@ -32,5 +41,5 @@ public final class ErrorInterno extends WebPage{
     @Override
     public boolean isVersioned() {
         return false;
-    }
+    }    
 }

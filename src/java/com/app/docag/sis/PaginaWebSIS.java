@@ -1,14 +1,17 @@
 package com.app.docag.sis;           
 
 import java.io.Serializable;
+import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.JavaScriptReferenceHeaderItem;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.include.Include;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.resource.JavaScriptResourceReference;
 import org.apache.wicket.request.resource.PackageResourceReference;
 
@@ -31,11 +34,17 @@ public abstract class PaginaWebSIS extends WebPage implements Serializable{
     
     public PaginaWebSIS(IModel model) {
         super(model);
+        WebMarkupContainer wicon = new WebMarkupContainer("wicon");
+	wicon.add(new AttributeAppender("href",""+RequestCycle.get().urlFor(new PackageResourceReference(imagenes.Imagenes.class, "DGO.png") , null).toString()));
+	add(wicon);
         add(new Label("titulo","DGO Software"));
         add(new Include("header", "MenuNav.html"));
     }
     public PaginaWebSIS(){
         super(new Model());
+        WebMarkupContainer wicon = new WebMarkupContainer("wicon");
+	wicon.add(new AttributeAppender("href",""+RequestCycle.get().urlFor(new PackageResourceReference(imagenes.Imagenes.class, "DGO.png") , null).toString()));
+	add(wicon);
         add(new Label("titulo","DGO Software"));
         add(new Include("header", "MenuNav.html"));
     }   

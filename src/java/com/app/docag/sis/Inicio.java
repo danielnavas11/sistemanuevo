@@ -8,6 +8,7 @@ import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
@@ -17,9 +18,14 @@ import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.include.Include;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.Session;
 import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.resource.ContextRelativeResource;
 import org.apache.wicket.request.resource.PackageResourceReference;
+import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
+
+
 public class Inicio extends PaginaWebSIS implements Serializable{
     final TextField usuario;
     final PasswordTextField clave;
@@ -43,6 +49,11 @@ public class Inicio extends PaginaWebSIS implements Serializable{
         configurar.add(new Label("lblconfigurar",Model.of("Configurar")));
         add(configurar);
         */
+	//Label modalheader=new Label("modal-header", Model.of(""));
+	WebMarkupContainer modalheader = new WebMarkupContainer("modalheader");
+	modalheader.add(new AttributeAppender("style","background: url('"+RequestCycle.get().urlFor(new PackageResourceReference(imagenes.Imagenes.class, "user-bg.jpg") , null).toString()+"');"));
+	add(modalheader);
+
         Form<Void> form_login = new Form<Void> ("form_login");
         
         
@@ -74,10 +85,17 @@ public class Inicio extends PaginaWebSIS implements Serializable{
             @Override
             public void onClick(AjaxRequestTarget art) {                
                 System.out.println("btnacceptar.onClick()");
-                Home home = new Home();
+		Session.get().setAttribute("usuario",usuariotext);
+		getSession().setAttribute("usuario",usuariotext);             
+		boolean authResult = AuthenticatedWebSession.get().signIn(usuariotext, clavetext);
+		/*Home home = new Home();
                 home.setUserId(usuariotext);
-                home.setUserClave(clavetext);
-                setResponsePage(home);
+                home.setUserClave(clavetext);*/
+            	//if authentication succeeds redirect user to the requested page
+            	if(authResult){
+			continueToOriginalDestination();
+                	setResponsePage(getApplication().getHomePage());
+		}
             }
         };
         
@@ -85,7 +103,7 @@ public class Inicio extends PaginaWebSIS implements Serializable{
         //add(btnacceptar);
         form_login.add(btnacceptar);
         
-        add(new Image("avatarLogin",new PackageResourceReference(imagenes.Imagenes.class, "userIcon.png")));
+        modalheader.add(new Image("avatarLogin",new PackageResourceReference(imagenes.Imagenes.class, "userIcon.png")));
         
         add(form_login);
     }

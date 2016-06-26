@@ -3,15 +3,21 @@ package com.app.docag.sis;
 import com.app.docag.sis.errores.ErrorInterno;
 import java.io.Serializable;
 import org.apache.log4j.Logger;
+import org.apache.wicket.Component;
+import org.apache.wicket.RestartResponseAtInterceptPageException;
+import org.apache.wicket.authorization.Action;
+import org.apache.wicket.authorization.IAuthorizationStrategy;
 import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebApplication;
 import org.apache.wicket.markup.html.IPackageResourceGuard;
 import org.apache.wicket.markup.html.SecurePackageResourceGuard;
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.request.component.IRequestableComponent;
 import org.apache.wicket.settings.ISecuritySettings;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.apache.wicket.util.crypt.AbstractCrypt;
 import org.apache.wicket.util.crypt.ClassCryptFactory;
+import org.apache.wicket.Session;
 /** 
  *
  * @author Daniel Navas
@@ -24,7 +30,7 @@ public class Aplicacion extends AuthenticatedWebApplication implements Serializa
     }
 
     public Class getHomePage() {
-        return Inicio.class;
+        return Home.class;
     }
     
     @Override
@@ -33,7 +39,7 @@ public class Aplicacion extends AuthenticatedWebApplication implements Serializa
         //getApplicationSettings().setPageExpiredErrorPage(MyExpiredPage.class);
         //getApplicationSettings().setAccessDeniedPage(MyAccessDeniedPage.class);
         getApplicationSettings().setInternalErrorPage(ErrorInterno.class);
-        
+        mountPage("/ErrorInterno",ErrorInterno.class); 
         getSecuritySettings().setCryptFactory(new ClassCryptFactory(AbstractCrypt.class,ISecuritySettings.DEFAULT_ENCRYPTION_KEY));
         
         getDebugSettings().setAjaxDebugModeEnabled(false);
@@ -51,18 +57,17 @@ public class Aplicacion extends AuthenticatedWebApplication implements Serializa
             guard.addPattern("+*.ttf");
             guard.addPattern("+*.woff");
             guard.addPattern("+*.woff2");
-        } 
+        }
     }
 
     @Override
     protected Class<? extends AbstractAuthenticatedWebSession> getWebSessionClass() {
         return WebSesion.class;
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     protected Class<? extends WebPage> getSignInPageClass() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Inicio.class;
     }
 
 }
