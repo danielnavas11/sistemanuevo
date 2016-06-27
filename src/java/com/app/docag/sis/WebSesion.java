@@ -1,10 +1,10 @@
 package com.app.docag.sis;
+import com.sis.persistencia.dao.pojos.Usuario;
 import java.util.ResourceBundle;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
-import org.apache.wicket.injection.Injector;
 import org.apache.wicket.request.Request;
 /**
  *
@@ -12,20 +12,19 @@ import org.apache.wicket.request.Request;
  */
 public class WebSesion extends AuthenticatedWebSession {
     private HttpSession httpSession;
-    //private SegUsuario usuario;
+    private Usuario usuario;
     
     
     
     public WebSesion(Request request) {
         super(request);
         this.httpSession = ((HttpServletRequest) request.getContainerRequest()).getSession();
-        Injector.get().inject(this);
     }
 
     @Override
     public boolean authenticate(String username, String password) {
-        //this.usuario = ERPAplicacion.get().getInicioSesion().getUsuarioLogin(usr.toLowerCase(), ERPCrypto.encriptaTexto(clv));
-        
+        this.usuario = Aplicacion.get().getInicioSesion().getUsuarioLogin(username, username);
+        System.out.println("com.app.docag.sis.WebSesion.authenticate()=usuario:"+usuario.isLogeado());
         return username.equals(password) && username.equals("demo");
     }
     
