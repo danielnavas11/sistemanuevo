@@ -14,9 +14,11 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.Session;
+import org.apache.wicket.authentication.IAuthenticationStrategy;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.resource.PackageResourceReference;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 
 public class Inicio extends PaginaWebSIS implements Serializable{
@@ -78,18 +80,17 @@ public class Inicio extends PaginaWebSIS implements Serializable{
                
         AjaxLink btnacceptar=new AjaxLink("btnacceptar") {            
             @Override
-            public void onClick(AjaxRequestTarget art) {                
+            public void onClick(AjaxRequestTarget art) {             
                 System.out.println("btnacceptar.onClick()");             
 		//boolean authResult = 
-                usuarioObjeto=Aplicacion.get().getInicioSesion().getUsuarioLogin(usuariotext, usuariotext);
+                //usuarioObjeto=Aplicacion.get().getInicioSesion().getUsuarioLogin(usuariotext, usuariotext);
+                //AuthenticatedWebSession.get().signIn(usuariotext, usuariotext);
 		/*Home home = new Home();
                 home.setUserId(usuariotext);
                 home.setUserClave(clavetext);*/
             	//if authentication succeeds redirect user to the requested page
-            	if(usuarioObjeto!=null){
-                        //Aplicacion.get().getInicioSesion().getDatosPorUsuario(usuarioObjeto);
-			continueToOriginalDestination();
-                	setResponsePage(Home.class);
+            	if(AuthenticatedWebSession.get().signIn(usuariotext, usuariotext)){
+                    setResponsePage(Home.class);   
 		}
             }
         };

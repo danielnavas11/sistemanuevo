@@ -11,24 +11,19 @@ import org.apache.wicket.request.Request;
  * @author Daniel Navas
  */
 public class WebSesion extends AuthenticatedWebSession {
-    private HttpSession httpSession;
     private Usuario usuario;
-    
-    
     
     public WebSesion(Request request) {
         super(request);
-        this.httpSession = ((HttpServletRequest) request.getContainerRequest()).getSession();
     }
 
     @Override
     public boolean authenticate(String username, String password) {
         boolean logeado=false;
         try{
-            this.usuario = Aplicacion.get().getInicioSesion().getUsuarioLogin(username, username);
-            setUsuario(usuario);
-            System.out.println("com.app.docag.sis.WebSesion.authenticate()=usuario:"+usuario.getLogeado());
-            logeado=usuario.getLogeado();
+            setUsuario(Aplicacion.get().getInicioSesion().getUsuarioLogin(username, username));
+            System.out.println("usuario:"+getUsuario().getLogeado());
+            logeado=getUsuario().getLogeado();
         } catch (Exception ex) {
             ex.printStackTrace();
             logeado=false;
@@ -43,6 +38,7 @@ public class WebSesion extends AuthenticatedWebSession {
 
     @Override
     public Roles getRoles() {
+        System.out.println("com.app.docag.sis.WebSesion.getRoles():"+this.usuario);
         if (isSignedIn()){
             return new Roles(Roles.ADMIN);
         }
