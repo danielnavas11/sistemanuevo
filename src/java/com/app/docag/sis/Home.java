@@ -18,9 +18,7 @@ public class Home extends PaginaWebSIS implements Serializable {
     private String userId,userClave;
 
     public Home() {
-        System.out.println("getSesionSIS().isSignedIn():"+getSesionSIS().isSignedIn());
-        System.out.println("username:"+Session.get().getAttribute("username"));
-        System.out.println("username:"+getSession().get().getAttribute("username"));
+        System.out.println("getSesionSIS().getUsuario():"+getSesionSIS().getUsuario());
         
         WebMarkupContainer modalheader = new WebMarkupContainer("headerpic");
 	modalheader.add(new AttributeAppender("style","background: url('"+RequestCycle.get().urlFor(new PackageResourceReference(imagenes.Imagenes.class, "user-bg.jpg") , null).toString()+"');"));

@@ -1,5 +1,6 @@
 package com.app.docag.sis;           
 
+import com.sis.persistencia.dao.pojos.Usuario;
 import org.apache.wicket.markup.html.basic.Label;
 import java.io.Serializable;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -22,6 +23,8 @@ public class Inicio extends PaginaWebSIS implements Serializable{
     final TextField usuario;
     final PasswordTextField clave;
     private String usuariotext,clavetext;
+    
+    private Usuario usuarioObjeto;
     
     public Inicio() {
         /*if(Configurar.ERPConfigurado()){
@@ -76,17 +79,17 @@ public class Inicio extends PaginaWebSIS implements Serializable{
         AjaxLink btnacceptar=new AjaxLink("btnacceptar") {            
             @Override
             public void onClick(AjaxRequestTarget art) {                
-                System.out.println("btnacceptar.onClick()");
-		Session.get().setAttribute("usuario",usuariotext);
-		getSession().setAttribute("usuario",usuariotext);             
-		boolean authResult = AuthenticatedWebSession.get().signIn(usuariotext, clavetext);
+                System.out.println("btnacceptar.onClick()");             
+		//boolean authResult = 
+                usuarioObjeto=Aplicacion.get().getInicioSesion().getUsuarioLogin(usuariotext, usuariotext);
 		/*Home home = new Home();
                 home.setUserId(usuariotext);
                 home.setUserClave(clavetext);*/
             	//if authentication succeeds redirect user to the requested page
-            	if(authResult){
+            	if(usuarioObjeto!=null){
+                        //Aplicacion.get().getInicioSesion().getDatosPorUsuario(usuarioObjeto);
 			continueToOriginalDestination();
-                	setResponsePage(getApplication().getHomePage());
+                	setResponsePage(Home.class);
 		}
             }
         };

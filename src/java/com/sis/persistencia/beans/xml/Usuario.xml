@@ -8,5 +8,7 @@
                 <param name="sequence">usuario_id_usuario_seq</param>  
             </generator>
         </id>
+        <property name="usuario" type="string"/>
+        <property name="password" type="string"/>
     </class>
 </hibernate-mapping>

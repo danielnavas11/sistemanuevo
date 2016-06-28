@@ -23,9 +23,17 @@ public class WebSesion extends AuthenticatedWebSession {
 
     @Override
     public boolean authenticate(String username, String password) {
-        this.usuario = Aplicacion.get().getInicioSesion().getUsuarioLogin(username, username);
-        System.out.println("com.app.docag.sis.WebSesion.authenticate()=usuario:"+usuario.isLogeado());
-        return username.equals(password) && username.equals("demo");
+        boolean logeado=false;
+        try{
+            this.usuario = Aplicacion.get().getInicioSesion().getUsuarioLogin(username, username);
+            setUsuario(usuario);
+            System.out.println("com.app.docag.sis.WebSesion.authenticate()=usuario:"+usuario.getLogeado());
+            logeado=usuario.getLogeado();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            logeado=false;
+        }
+        return logeado;
     }
     
     @Override
@@ -41,6 +49,16 @@ public class WebSesion extends AuthenticatedWebSession {
         return null;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    
+    
+    
     public String getValorBundleLocaleIdioma(String etiqueta) {
         try {
             String valor = ResourceBundle.getBundle("com.app.docag.sis.lenguajes.Aplicacion", getLocale()).getString(etiqueta);
