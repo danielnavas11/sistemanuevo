@@ -1,8 +1,6 @@
 package com.app.docag.sis;
 import com.sis.persistencia.dao.pojos.Usuario;
 import java.util.ResourceBundle;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 import org.apache.wicket.request.Request;
@@ -12,21 +10,21 @@ import org.apache.wicket.request.Request;
  */
 public class WebSesion extends AuthenticatedWebSession {
     private Usuario usuario;
-    
+    final static org.apache.log4j.Logger log_erp = org.apache.log4j.Logger.getLogger(WebSesion.class);
     public WebSesion(Request request) {
         super(request);
     }
 
     @Override
     public boolean authenticate(String username, String password) {
-        boolean logeado=false;
+        boolean logeado;
         try{
             setUsuario(Aplicacion.get().getInicioSesion().getUsuarioLogin(username, username));
-            System.out.println("usuario:"+getUsuario().getLogeado());
+            log_erp.info("usuario:"+getUsuario().getLogeado());
             logeado=getUsuario().getLogeado();
         } catch (Exception ex) {
-            ex.printStackTrace();
             logeado=false;
+            log_erp.error(ex.getMessage(),ex);
         }
         return logeado;
     }
@@ -38,8 +36,10 @@ public class WebSesion extends AuthenticatedWebSession {
 
     @Override
     public Roles getRoles() {
-        System.out.println("com.app.docag.sis.WebSesion.getRoles():"+this.usuario);
-        if (isSignedIn()){
+        log_erp.info("getRoles:"+getUsuario().getId_usuario());
+        if (isSignedIn() && getUsuario().getId_usuario()==1){
+            return new Roles(Roles.USER);
+        }else if(isSignedIn() && getUsuario().getId_usuario()==2){
             return new Roles(Roles.ADMIN);
         }
         return null;
@@ -59,7 +59,8 @@ public class WebSesion extends AuthenticatedWebSession {
         try {
             String valor = ResourceBundle.getBundle("com.app.docag.sis.lenguajes.Aplicacion", getLocale()).getString(etiqueta);
             return valor.equals("") ? etiqueta : valor;
-        } catch (Exception e) {
+        } catch (Exception ex) {
+            log_erp.error(ex.getMessage(),ex);
             return etiqueta;
         }
     }

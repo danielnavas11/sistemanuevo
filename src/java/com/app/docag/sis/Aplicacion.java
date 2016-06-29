@@ -1,5 +1,6 @@
 package com.app.docag.sis;           
 
+import com.app.docag.sis.errores.AccesoDenegado;
 import com.app.docag.sis.errores.ErrorInterno;
 import com.sis.persistencia.h.InicioSesionH;
 import java.io.Serializable;
@@ -33,6 +34,7 @@ public class Aplicacion extends AuthenticatedWebApplication implements Serializa
         return (Aplicacion) Application.get();
     }
 
+    @Override
     public Class getHomePage() {
         return Inicio.class;
     }
@@ -41,7 +43,7 @@ public class Aplicacion extends AuthenticatedWebApplication implements Serializa
     protected void init() {
         super.init();
         //getApplicationSettings().setPageExpiredErrorPage(MyExpiredPage.class);
-        //getApplicationSettings().setAccessDeniedPage(MyAccessDeniedPage.class);
+        getApplicationSettings().setAccessDeniedPage(AccesoDenegado.class);
         getApplicationSettings().setInternalErrorPage(ErrorInterno.class);
         mountPage("/ErrorInterno",ErrorInterno.class); 
         getSecuritySettings().setCryptFactory(new ClassCryptFactory(AbstractCrypt.class,ISecuritySettings.DEFAULT_ENCRYPTION_KEY));

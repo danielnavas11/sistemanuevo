@@ -3,6 +3,9 @@ package com.app.docag.sis;
 import com.sis.persistencia.dao.pojos.Usuario;
 import org.apache.wicket.markup.html.basic.Label;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.apache.wicket.RestartResponseAtInterceptPageException;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
@@ -13,12 +16,9 @@ import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.Session;
-import org.apache.wicket.authentication.IAuthenticationStrategy;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.resource.PackageResourceReference;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
-import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 
 public class Inicio extends PaginaWebSIS implements Serializable{
@@ -28,25 +28,27 @@ public class Inicio extends PaginaWebSIS implements Serializable{
     
     private Usuario usuarioObjeto;
     
-    public Inicio() {
-        /*if(Configurar.ERPConfigurado()){
-            log_erp.info("Configuracion:".concat(Configurar.obtenerParametrosConfiguracion()));
-        }else{
-           log_erp.info("Configurar......");
-           setResponsePage(ConfigurarOpciones.class);
-        }*/
-        //add(new Label("configurar", "Configurar"));
-        /*AjaxLink configurar=new AjaxLink("configurar") {            
-            @Override
-            public void onClick(AjaxRequestTarget art) {                
-                System.out.println("Click");
+    final static org.apache.log4j.Logger log_erp = org.apache.log4j.Logger.getLogger(Inicio.class);
+
+    @Override
+    protected void onConfigure() {
+        super.onConfigure();
+        if(AuthenticatedWebSession.get().isSignedIn()){
+            try {
+                throw new RestartResponseAtInterceptPageException(new Home());
+            } catch (InterruptedException ex) {
+                log_erp.error(ex.getMessage(), ex);
             }
-        };
-        configurar.setOutputMarkupId(true);
-        configurar.add(new Label("lblconfigurar",Model.of("Configurar")));
-        add(configurar);
-        */
-	//Label modalheader=new Label("modal-header", Model.of(""));
+        }
+    }
+    
+    
+    
+    public Inicio() { 
+        final Label error=new Label("mensajeslogin", "");
+        error.setOutputMarkupId(true);
+        add(error);
+        
 	WebMarkupContainer modalheader = new WebMarkupContainer("modalheader");
 	modalheader.add(new AttributeAppender("style","background: url('"+RequestCycle.get().urlFor(new PackageResourceReference(imagenes.Imagenes.class, "user-bg.jpg") , null).toString()+"');"));
 	add(modalheader);
@@ -81,17 +83,13 @@ public class Inicio extends PaginaWebSIS implements Serializable{
         AjaxLink btnacceptar=new AjaxLink("btnacceptar") {            
             @Override
             public void onClick(AjaxRequestTarget art) {             
-                System.out.println("btnacceptar.onClick()");             
-		//boolean authResult = 
-                //usuarioObjeto=Aplicacion.get().getInicioSesion().getUsuarioLogin(usuariotext, usuariotext);
-                //AuthenticatedWebSession.get().signIn(usuariotext, usuariotext);
-		/*Home home = new Home();
-                home.setUserId(usuariotext);
-                home.setUserClave(clavetext);*/
-            	//if authentication succeeds redirect user to the requested page
+                log_erp.info("btnacceptar.onClick()");
             	if(AuthenticatedWebSession.get().signIn(usuariotext, usuariotext)){
                     setResponsePage(Home.class);   
-		}
+		}else{
+                    error.setDefaultModel(Model.of("usuario invalido"));
+                    art.add(error);
+                }
             }
         };
         

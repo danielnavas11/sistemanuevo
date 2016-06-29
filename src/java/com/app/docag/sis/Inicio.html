@@ -29,7 +29,8 @@
                             <!-- react-text: 631 -->Login DGO Software<!-- /react-text -->                                                          
                         </div>                        
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body">                        
+                        <div wicket:id="mensajeslogin">[mensajeslogin]</div>
                         <form class="form col-md-12 center-block" wicket:id="form_login">
                             <div class="form-group">
                                 <input class="form-control input-lg" placeholder="" wicket:id="usuario" type="text"/>
@@ -66,6 +67,11 @@
 	html {
 	    margin: auto;
 	}
+        #mensajeslogin{
+            height: 60px;
+            width: 60px;
+            top: 8px;
+        }
     </style>
     <script>
 	$("#header").css("z-index","0");
