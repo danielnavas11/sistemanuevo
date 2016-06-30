@@ -7942,7 +7942,7 @@ p {
   position: absolute;
   width: 100%;
   height: calc(100% - 70px);
-  background: url(../img/notifications.png) center no-repeat;
+  /*background: url(../img/notifications.png) center no-repeat;*/
   -webkit-transition: all;
   -o-transition: all;
   transition: all;
@@ -8282,7 +8282,6 @@ p {
   background: rgba(0,0,0,.37);
   padding: 7px 14px;
   color: #fff;
-  margin-top: 20px;
   position: relative;
 }
 

@@ -1,42 +1,52 @@
 $(document).ready(function (e) {
     // Fullscreen
-  function toggleFullScreen() {
-    if ((document.fullScreenElement && document.fullScreenElement !== null) ||
-      (!document.mozFullScreen && !document.webkitIsFullScreen)) {
-      if (document.documentElement.requestFullScreen) {
-        document.documentElement.requestFullScreen();
-      }
-      else if (document.documentElement.mozRequestFullScreen) {
-        document.documentElement.mozRequestFullScreen();
-      }
-      else if (document.documentElement.webkitRequestFullScreen) {
-        document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
-      }
+    function toggleFullScreen() {
+        if ((document.fullScreenElement && document.fullScreenElement !== null) ||
+                (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+            if (document.documentElement.requestFullScreen) {
+                document.documentElement.requestFullScreen();
+            } else if (document.documentElement.mozRequestFullScreen) {
+                document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.webkitRequestFullScreen) {
+                document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+            }
+        } else {
+            if (document.cancelFullScreen) {
+                document.cancelFullScreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.webkitCancelFullScreen) {
+                document.webkitCancelFullScreen();
+            }
+        }
     }
-    else {
-      if (document.cancelFullScreen) {
-        document.cancelFullScreen();
-      }
-      else if (document.mozCancelFullScreen) {
-        document.mozCancelFullScreen();
-      }
-      else if (document.webkitCancelFullScreen) {
-        document.webkitCancelFullScreen();
-      }
-    }
-  }
 
-  $('.toggle-fullscreen').click(function() {
-    toggleFullScreen();
-  });
+    $('.toggle-fullscreen').click(function () {
+        toggleFullScreen();
+    });
+    
+    //evita que el dropdown menu al darle click se cierre
+    $(".dropdown")[0] && ($("body").on("click", ".dropdown.open .dropdown-menu", function (a) {
+        a.stopPropagation();
+    }), $(".dropdown").on("shown.bs.dropdown", function (a) {
+        $(this).attr("data-animation") && ($animArray = [], $animation = $(this).data("animation"),
+                $animArray = $animation.split(","), $animationIn = "animated " + $animArray[0],
+                $animationOut = "animated " + $animArray[1], $animationDuration = "", $animArray[2] ? $animationDuration = $animArray[2] : $animationDuration = 500,
+                $(this).find(".dropdown-menu").removeClass($animationOut), $(this).find(".dropdown-menu").addClass($animationIn));
+    }), $(".dropdown").on("hide.bs.dropdown", function (a) {
+        $(this).attr("data-animation") && (a.preventDefault(), $this = $(this), $dropdownMenu = $this.find(".dropdown-menu"),
+                $dropdownMenu.addClass($animationOut), setTimeout(function () {
+            $this.removeClass("open");
+        }, $animationDuration));
+    }));
 });
 
 
 $(document).ready(function () {
     $("body").on("click", "[data-ma-action]", function (e) {
         e.preventDefault();
-        var $this = $(this),
-                action = $(this).data("ma-action");
+        var $this = $(this);
+        action = $(this).data("ma-action");
         switch (action) {
             case "sidebar-open":
                 var target = $this.data("ma-target"),
@@ -59,21 +69,22 @@ $(document).ready(function () {
                 $("#header").removeClass("search-toggled");
                 break;
             case "clear-notification":
-                var x = $this.closest(".list-group"),
-                        y = x.find(".list-group-item"),
-                        z = y.size();
-                $this.parent().fadeOut(), x.find(".list-group").prepend('<i class="grid-loading hide-it"></i>'), 
-                        x.find(".grid-loading").fadeIn(1500);
+                var x = $this.closest(".list-group");
+                var y = x.find(".list-group-item");
+                var z = y.size();
+                $this.parent().fadeOut();
+                x.find(".list-group").prepend('<i class="grid-loading hide-it"></i>'); 
+                x.find(".grid-loading").fadeIn(1500);
                 var w = 0;
                 y.each(function () {
                     var z = $(this);
                     setTimeout(function () {
                         z.addClass("animated fadeOutRightBig").delay(1e3).queue(function () {
-                            z.remove()
-                        })
-                    }, w += 150)
+                            z.remove();
+                        });
+                    }, w += 150);
                 }), setTimeout(function () {
-                    $(".him-notification").addClass("empty")
+                    $(".him-notification").addClass("empty");
                 }, 150 * z + 200);
                 break;
             case "clear-localstorage":
@@ -126,7 +137,7 @@ $(document).ready(function () {
                 break;
             case "change-skin":
                 var skin = $this.data("ma-skin");
-                $("[data-ma-theme]").attr("data-ma-theme", skin)
+                $("[data-ma-theme]").attr("data-ma-theme", skin);
         }
-    })
+    });
 });
