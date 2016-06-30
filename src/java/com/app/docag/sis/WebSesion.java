@@ -1,6 +1,7 @@
 package com.app.docag.sis;
 import com.sis.persistencia.dao.pojos.Usuario;
 import java.util.ResourceBundle;
+import org.apache.wicket.RestartResponseAtInterceptPageException;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.authroles.authorization.strategies.role.Roles;
 import org.apache.wicket.request.Request;
@@ -36,6 +37,9 @@ public class WebSesion extends AuthenticatedWebSession {
 
     @Override
     public Roles getRoles() {
+        if(!AuthenticatedWebSession.get().isSignedIn()){
+            throw new RestartResponseAtInterceptPageException(new Inicio());
+        }
         log_erp.info("getRoles:"+getUsuario().getId_usuario());
         if (isSignedIn() && getUsuario().getId_usuario()==1){
             return new Roles(Roles.USER);

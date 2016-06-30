@@ -20,9 +20,6 @@ import org.apache.wicket.request.resource.PackageResourceReference;
  */
 public final class ErrorInterno extends PaginaWebSIS{
     public ErrorInterno() {
-        WebMarkupContainer wicon = new WebMarkupContainer("wicon");
-	wicon.add(new AttributeAppender("href",""+RequestCycle.get().urlFor(new PackageResourceReference(imagenes.Imagenes.class, "DGO.png") , null).toString()));
-	add(wicon);
         AjaxLink btnacceptar=new AjaxLink("linkinicio") {            
             @Override
             public void onClick(AjaxRequestTarget art) {

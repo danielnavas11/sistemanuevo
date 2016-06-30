@@ -28,6 +28,8 @@ public abstract class PaginaWebSIS extends WebPage implements Serializable{
     
     private static final JavaScriptResourceReference materialize = new JavaScriptResourceReference(materialui.Js.class, "materialize.js");
     
+    private static final JavaScriptResourceReference jsapp = new JavaScriptResourceReference(js.Js.class, "app.js");
+    
     public WebSesion getSesionSIS() {
         return (WebSesion) getSession();
     }
@@ -55,6 +57,7 @@ public abstract class PaginaWebSIS extends WebPage implements Serializable{
         response.render(JavaScriptReferenceHeaderItem.forReference(formvalidador));
         
         response.render(JavaScriptReferenceHeaderItem.forReference(materialize));
+        response.render(JavaScriptReferenceHeaderItem.forReference(jsapp));
         
         response.render(CssHeaderItem.forReference(new PackageResourceReference(css.Css.class, "bootstrap2.css")));
         response.render(CssHeaderItem.forReference(new PackageResourceReference(css.Css.class, "bootstrap_modal.css")));
