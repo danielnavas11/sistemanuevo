@@ -39,7 +39,8 @@ public abstract class PaginaWebSIS extends WebPage implements Serializable{
 	wicon.add(new AttributeAppender("href",""+RequestCycle.get().urlFor(new PackageResourceReference(imagenes.Imagenes.class, "DGO.png") , null).toString()));
 	add(wicon);
         add(new Label("titulo","DGO Software"));
-        add(new Include("header", "MenuNav.html"));
+        //add(new Include("header", "MenuNav.html"));
+        add(new HeaderPanel("headeranel",getSesionSIS().getUsuario()));
     }
     public PaginaWebSIS(){
         super(new Model());
@@ -47,7 +48,8 @@ public abstract class PaginaWebSIS extends WebPage implements Serializable{
 	wicon.add(new AttributeAppender("href",""+RequestCycle.get().urlFor(new PackageResourceReference(imagenes.Imagenes.class, "DGO.png") , null).toString()));
 	add(wicon);
         add(new Label("titulo","DGO Software"));
-        add(new Include("header", "MenuNav.html"));
+        //add(new Include("header", "MenuNav.html"));
+        add(new HeaderPanel("headeranel",getSesionSIS().getUsuario()));
     }   
     @Override
     public void renderHead(IHeaderResponse response) {   

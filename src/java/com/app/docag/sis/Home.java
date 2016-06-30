@@ -14,6 +14,7 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
+import org.apache.wicket.markup.html.basic.Label;
 
 /**
  *
@@ -31,22 +32,21 @@ public class Home extends PaginaWebSIS implements Serializable {
             modalheader.add(new AttributeAppender("style","background: url('"+RequestCycle.get().urlFor(new PackageResourceReference(imagenes.Imagenes.class, "user-bg.jpg") , null).toString()+"');"));
             add(modalheader);
 
-	AjaxLink salirsistema=new AjaxLink("salirsistema") {            
-            @Override
-            public void onClick(AjaxRequestTarget art) { 
-            	if(AuthenticatedWebSession.get().isSignedIn()){
-                    AuthenticatedWebSession.get().signOut();
-		    getSesionSIS().setUsuario(null);
-		    log_erp.info("AuthenticatedWebSession.get().signOut()");
-		    throw new RestartResponseAtInterceptPageException(new Inicio());
-		}
-            }
-        };
-	add(salirsistema);
+            AjaxLink salirsistema=new AjaxLink("salirsistema") {
+                @Override
+                public void onClick(AjaxRequestTarget art) { 
+                    if(AuthenticatedWebSession.get().isSignedIn()){
+                        AuthenticatedWebSession.get().signOut();
+                        getSesionSIS().setUsuario(null);
+                        log_erp.info("AuthenticatedWebSession.get().signOut()");
+                        throw new RestartResponseAtInterceptPageException(new Inicio());
+                    }
+                }
+            };
+            add(salirsistema);
 
             add(modalheader.add(new Image("avatarPerfil",new PackageResourceReference(imagenes.Imagenes.class, "userIcon.png"))));
             add(new HomeSeccion1("HomeSeccion1"));
-
 
         }
     }
