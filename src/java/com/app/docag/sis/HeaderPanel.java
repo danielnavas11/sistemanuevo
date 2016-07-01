@@ -8,8 +8,9 @@ import org.apache.wicket.markup.html.panel.Panel;
  * @author dnavas
  */
 public class HeaderPanel extends Panel{    
-    public HeaderPanel(String id,Usuario user) {
+    public HeaderPanel(String id,Usuario user,WebSesion getSesionSIS) {
         super(id);
+        add(new Label("tituloLogo",getSesionSIS.getValorBundleLocaleIdioma("titulosistema")));
         String html="<a aria-expanded=\"false\" data-toggle=\"dropdown\" href=\"\">\n" +
 "                        <i class=\"him-icon zmdi zmdi-notifications\"></i>\n" +
 "                        <i class=\"him-counts\">9</i>\n" +

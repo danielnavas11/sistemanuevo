@@ -37,19 +37,19 @@ public abstract class PaginaWebSIS extends WebPage implements Serializable{
         super(model);
         WebMarkupContainer wicon = new WebMarkupContainer("wicon");
 	wicon.add(new AttributeAppender("href",""+RequestCycle.get().urlFor(new PackageResourceReference(imagenes.Imagenes.class, "DGO.png") , null).toString()));
-	add(wicon);
-        add(new Label("titulo","DGO Software"));
+	add(wicon);        
+        add(new Label("titulo",getSesionSIS().getValorBundleLocaleIdioma("titulosistema")));
         //add(new Include("header", "MenuNav.html"));
-        add(new HeaderPanel("headeranel",getSesionSIS().getUsuario()));
+        add(new HeaderPanel("headeranel",getSesionSIS().getUsuario(),getSesionSIS()));
     }
     public PaginaWebSIS(){
         super(new Model());
         WebMarkupContainer wicon = new WebMarkupContainer("wicon");
 	wicon.add(new AttributeAppender("href",""+RequestCycle.get().urlFor(new PackageResourceReference(imagenes.Imagenes.class, "DGO.png") , null).toString()));
 	add(wicon);
-        add(new Label("titulo","DGO Software"));
+        add(new Label("titulo",getSesionSIS().getValorBundleLocaleIdioma("titulosistema")));
         //add(new Include("header", "MenuNav.html"));
-        add(new HeaderPanel("headeranel",getSesionSIS().getUsuario()));
+        add(new HeaderPanel("headeranel",getSesionSIS().getUsuario(),getSesionSIS()));
     }   
     @Override
     public void renderHead(IHeaderResponse response) {   

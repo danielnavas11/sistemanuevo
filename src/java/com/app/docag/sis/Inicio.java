@@ -48,10 +48,12 @@ public class Inicio extends PaginaWebSIS implements Serializable{
         final Label error=new Label("mensajeslogin", "");
         error.setOutputMarkupId(true);
         add(error);
-        
+                
 	WebMarkupContainer modalheader = new WebMarkupContainer("modalheader");
 	modalheader.add(new AttributeAppender("style","background: url('"+RequestCycle.get().urlFor(new PackageResourceReference(imagenes.Imagenes.class, "user-bg.jpg") , null).toString()+"');"));
 	add(modalheader);
+        
+        modalheader.add(new Label("titulologin", Model.of(getSesionSIS().getValorBundleLocaleIdioma("titulologin"))));       
 
         Form<Void> form_login = new Form<Void> ("form_login");
         
