@@ -1,10 +1,10 @@
 package com.app.docag.sis;           
 
+import com.app.bootstrap.util.IVDMensajesJGROWL;
+import com.sis.persistencia.criptografia.IVDCrypto;
 import com.sis.persistencia.dao.pojos.Usuario;
 import org.apache.wicket.markup.html.basic.Label;
 import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.wicket.RestartResponseAtInterceptPageException;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
@@ -25,9 +25,7 @@ public class Inicio extends PaginaWebSIS implements Serializable{
     final TextField usuario;
     final PasswordTextField clave;
     private String usuariotext,clavetext;
-    
-    private Usuario usuarioObjeto;
-    
+        
     final static org.apache.log4j.Logger log_erp = org.apache.log4j.Logger.getLogger(Inicio.class);
 
     @Override
@@ -86,11 +84,12 @@ public class Inicio extends PaginaWebSIS implements Serializable{
             @Override
             public void onClick(AjaxRequestTarget art) {             
                 log_erp.info("btnacceptar.onClick()");
-            	if(AuthenticatedWebSession.get().signIn(usuariotext, usuariotext)){
+            	if(AuthenticatedWebSession.get().signIn(usuariotext, IVDCrypto.encriptaTexto(clavetext))){
                     setResponsePage(Home.class);   
 		}else{
-                    error.setDefaultModel(Model.of("usuario invalido"));
-                    art.add(error);
+                    //error.setDefaultModel(Model.of("usuario invalido"));
+                    //art.add(error);
+                    art.appendJavaScript(IVDMensajesJGROWL.ERPJGrowl.errorlogin("Usuario Invalido. Verifique e intente de nuevo."));
                 }
             }
         };

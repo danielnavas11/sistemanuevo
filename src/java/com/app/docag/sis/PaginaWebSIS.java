@@ -29,6 +29,8 @@ public abstract class PaginaWebSIS extends WebPage implements Serializable{
     
     private static final JavaScriptResourceReference jsapp = new JavaScriptResourceReference(js.Js.class, "app.js");
     
+    private static final JavaScriptResourceReference growl = new JavaScriptResourceReference(js.Js.class, "bootstrap-growl.js");
+    
     public WebSesion getSesionSIS() {
         return (WebSesion) getSession();
     }
@@ -55,6 +57,8 @@ public abstract class PaginaWebSIS extends WebPage implements Serializable{
     public void renderHead(IHeaderResponse response) {   
         response.render(JavaScriptReferenceHeaderItem.forReference(jquery));
         response.render(JavaScriptReferenceHeaderItem.forReference(bootstrap));
+        
+        response.render(JavaScriptReferenceHeaderItem.forReference(growl));
         
         response.render(JavaScriptReferenceHeaderItem.forReference(materialize));
         response.render(JavaScriptReferenceHeaderItem.forReference(jsapp));
