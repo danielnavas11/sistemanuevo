@@ -3354,16 +3354,6 @@ small {
   transform-origin: 50% 10%;
   will-change: transform, opacity; }
 
-.btn, .btn-large, .btn-flat {
-  border: none;
-  border-radius: 2px;
-  display: inline-block;
-  height: 36px;
-  line-height: 36px;
-  outline: 0;
-  padding: 0 2rem;
-  vertical-align: middle;
-  -webkit-tap-highlight-color: transparent; }
 
 .btn.disabled, .disabled.btn-large, .btn-floating.disabled, .btn-large.disabled, .btn:disabled, .btn-large:disabled, .btn-large:disabled, .btn-floating:disabled {
   background-color: #DFDFDF;
@@ -3379,20 +3369,6 @@ small {
 .btn i, .btn-large i, .btn-floating i, .btn-large i, .btn-flat i {
   font-size: 1.3rem;
   line-height: inherit; }
-
-.btn, .btn-large {
-  text-decoration: none;
-  color: #FFF;
-  text-align: center;
-  letter-spacing: .5px;
-  -webkit-transition: 0.2s ease-out;
-  -moz-transition: 0.2s ease-out;
-  -o-transition: 0.2s ease-out;
-  -ms-transition: 0.2s ease-out;
-  transition: 0.2s ease-out;
-  cursor: pointer; }
-  .btn:hover, .btn-large:hover {
-    background-color: #ff5a92; }
 
 .btn-floating {
   display: inline-block;
@@ -3777,11 +3753,9 @@ a.waves-effect .waves-ripple {
 
 /* Remove Focus Boxes */
 select:focus {
-  outline: 1px solid white; }
+  outline: 1px solid white; 
+}
 
-button:focus {
-  outline: none;
-  background-color: #ff548e; }
 
 label {
   font-size: 0.8rem;

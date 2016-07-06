@@ -1,5 +1,6 @@
 package com.app.docag.sis;
 
+import com.app.bootstrap.util.PreloaderBlue;
 import com.app.docag.sis.home.HomeSeccion1;
 import java.io.Serializable;
 import org.apache.wicket.RestartResponseAtInterceptPageException;
@@ -34,7 +35,7 @@ public class Home extends PaginaWebSIS implements Serializable {
 
             AjaxLink salirsistema=new AjaxLink("salirsistema") {
                 @Override
-                public void onClick(AjaxRequestTarget art) { 
+                public void onClick(AjaxRequestTarget art) {
                     if(AuthenticatedWebSession.get().isSignedIn()){
                         AuthenticatedWebSession.get().signOut();
                         getSesionSIS().setUsuario(null);
@@ -46,7 +47,20 @@ public class Home extends PaginaWebSIS implements Serializable {
             add(salirsistema);
 
             add(modalheader.add(new Image("avatarPerfil",new PackageResourceReference(imagenes.Imagenes.class, "userIcon.png"))));
-            add(new HomeSeccion1("HomeSeccion1"));
+            final HomeSeccion1 home1=new HomeSeccion1("HomeSeccion1");
+            home1.setOutputMarkupId(true);
+            add(home1);
+            
+            
+            AjaxLink verperfil=new AjaxLink("verperfil") {
+                @Override
+                public void onClick(AjaxRequestTarget art) {
+                    if(AuthenticatedWebSession.get().isSignedIn()){
+                        System.out.println("click");
+                    }
+                }
+            };
+            add(verperfil);
 
         }
     }

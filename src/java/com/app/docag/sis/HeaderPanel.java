@@ -13,7 +13,7 @@ public class HeaderPanel extends Panel{
         add(new Label("tituloLogo",getSesionSIS.getValorBundleLocaleIdioma("titulosistema")));
         String html="<a aria-expanded=\"false\" data-toggle=\"dropdown\" href=\"\">\n" +
 "                        <i class=\"him-icon zmdi zmdi-notifications\"></i>\n" +
-"                        <i class=\"him-counts\">9</i>\n" +
+"                        <i class=\"him-counts\">1</i>\n" +
 "                    </a>";
         html=html.concat("<div class=\"dropdown-menu dropdown-menu-lg pull-right\">\n" +
 "                        <div class=\"list-group him-notification\">\n" +
@@ -33,8 +33,8 @@ public class HeaderPanel extends Panel{
 "                                        <img class=\"lgi-img\" src=\"\" alt=\"\">\n" +
 "                                    </div>\n" +
 "                                    <div class=\"media-body\">\n" +
-"                                        <div class=\"lgi-heading\">Notification Title</div>\n" +
-"                                        <small class=\"lgi-text\">Notification Body</small>\n" +
+"                                        <div class=\"lgi-heading\">Nueva Actualizaci&oacute;n en Modulo Equipos</div>\n" +
+"                                        <small class=\"lgi-text\">El proximo 23-07-2016, se actualizara el \nmodulo de equipos con nuevas \nmejoras y funciones.</small>\n" +
 "                                    </div>\n" +
 "                                </a>\n" +
 "                            </div>\n" +

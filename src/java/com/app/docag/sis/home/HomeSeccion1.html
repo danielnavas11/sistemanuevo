@@ -1,85 +1,84 @@
 <wicket:panel>
-    
-    <!-- Page Loader -->
-        <div class="loader">
-            <div class="preloader pls-blue">
-                <svg class="pl-circular" viewBox="25 25 50 50">
-                    <circle class="plc-path" cx="50" cy="50" r="20" />
-                </svg>
-            </div>
-        </div>
-    <!-- Fin Page Loader -->
-    
+    <script type="text/javascript">
+            $(document).ready(function(){
+                $('.btnanimadocomandoedit').each(function() {
+                    $(this).mouseenter(function(){
+                        var btnanimadocomandoedit=$(this);
+                        btnanimadocomandoedit.addClass('animated bounceIn');                    
+                        setTimeout(function(){
+                            btnanimadocomandoedit.removeClass('animated bounceIn');
+                        }, 1200);
+                    });
+                });
+            });
+        </script>
     <div class="row">
         <div class="col-sm-6">
             <!-- Recent Items -->
             <div class="card">
                 <div class="card-header">
-                    <h2>Recent Items <small>Phasellus condimentum ipsum id auctor imperdie</small></h2>
-                    <ul class="actions">
-                        <li class="dropdown">
-                            <a href="" data-toggle="dropdown">
-                                <i class="zmdi zmdi-more-vert"></i>
-                            </a>
-
-                            <ul class="dropdown-menu dropdown-menu-right">
-                                <li>
-                                    <a href="">Refresh</a>
-                                </li>
-                                <li>
-                                    <a href="">Settings</a>
-                                </li>
-                                <li>
-                                    <a href="">Other Settings</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+                    <h2>Proyectos <small>Informaci&oacute;n general de los Proyctos</small></h2>
                 </div>
 
                 <div class="card-body m-t-0">
                     <table class="table table-inner table-vmiddle">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th style="width: 60px">Price</th>
+                                <th style="text-transform: none;">
+                                    N&uacute;mero
+                                </th>
+                                <th style="text-transform: none;" colspan="2">Nombre</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td class="f-500 c-cyan">2569</td>
-                                <td>Samsung Galaxy Mega</td>
-                                <td class="f-500 c-cyan">$521</td>
+                                <td>Proyecto1</td>
+                                <td style="width: 16px;" class="">
+                                    <button id="btnanimadocomandoedit" data-row-id="10253" class="btnanimadocomandoedit btn btn-icon waves-effect command-edit waves-circle" type="button">
+                                        <span class="zmdi zmdi-edit"></span>
+                                    </button>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="f-500 c-cyan">9658</td>
-                                <td>Huawei Ascend P6</td>
-                                <td class="f-500 c-cyan">$440</td>
+                                <td>Proyecto2</td>
+                                <td style="" class="">
+                                    <button id="btnanimadocomandoedit" data-row-id="10253" class="btnanimadocomandoedit btn btn-icon waves-effect command-edit waves-circle" type="button">
+                                        <span class="zmdi zmdi-edit"></span>
+                                    </button>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="f-500 c-cyan">1101</td>
-                                <td>HTC One M8</td>
-                                <td class="f-500 c-cyan">$680</td>
+                                <td>Proyecto3</td>
+                                <td style="" class="">
+                                    <button id="btnanimadocomandoedit" data-row-id="10253" class="btnanimadocomandoedit btn btn-icon waves-effect command-edit waves-circle" type="button">
+                                        <span class="zmdi zmdi-edit"></span>
+                                    </button>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="f-500 c-cyan">6598</td>
-                                <td>Samsung Galaxy Alpha</td>
-                                <td class="f-500 c-cyan">$870</td>
+                                <td>Proyecto4</td>
+                                <td style="" class="">
+                                    <button id="btnanimadocomandoedit" data-row-id="10253" class="btnanimadocomandoedit btn btn-icon waves-effect command-edit waves-circle" type="button">
+                                        <span class="zmdi zmdi-edit"></span>
+                                    </button>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="f-500 c-cyan">4562</td>
-                                <td>LG G3</td>
-                                <td class="f-500 c-cyan">$690</td>
+                                <td>Proyecto4</td>
+                                <td style="" class="">
+                                    <button id="btnanimadocomandoedit" data-row-id="10253" class="btnanimadocomandoedit btn btn-icon waves-effect command-edit waves-circle" type="button">
+                                        <span class="zmdi zmdi-edit"></span>
+                                    </button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <div style="padding: 0px; position: relative;" id="recent-items-chart" class="flot-chart">
-                    <canvas height="150" width="517" style="direction: ltr; position: absolute; left: 0px; 
-                            top: 0px; width: 517px; height: 150px;" class="flot-base"></canvas>
-                            <canvas height="150" width="517" style="direction: ltr; position: absolute; 
-                                    left: 0px; top: 0px; width: 517px; height: 150px;" class="flot-overlay"></canvas></div>
             </div>
         </div>
 
@@ -87,86 +86,56 @@
             <!-- Recent Posts -->
             <div class="card">
                 <div class="card-header ch-alt m-b-20">
-                    <h2>Recent Posts <small>Phasellus condimentum ipsum id auctor imperdie</small></h2>
-                    <ul class="actions">
-                        <li>
-                            <a href="">
-                                <i class="zmdi zmdi-refresh-alt"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="zmdi zmdi-download"></i>
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="" data-toggle="dropdown">
-                                <i class="zmdi zmdi-more-vert"></i>
-                            </a>
-
-                            <ul class="dropdown-menu dropdown-menu-right">
-                                <li>
-                                    <a href="">Change Date Range</a>
-                                </li>
-                                <li>
-                                    <a href="">Change Graph Type</a>
-                                </li>
-                                <li>
-                                    <a href="">Other Settings</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+                    <h2>Actualizaciones <small>Actualizacines generales (Materiales, Equipos, etc.)</small></h2>
                 </div>
 
                 <div class="card-body">
                     <div class="list-group">
                         <a class="list-group-item media" href="">
                             <div class="pull-left">
-                                <img class="lgi-img" src="img/profile-pics/1.jpg" alt="">
+                                <img class="lgi-img" src="./wicket/resource/imagenes.Imagenes/userIcon.png" alt="">
                             </div>
                             <div class="media-body">
                                 <div class="lgi-heading">David Belle</div>
-                                <small class="lgi-text">Cum sociis natoque penatibus et magnis dis parturient montes</small>
+                                <small class="lgi-text">Modifico: Detalles Proyecto 2</small>
                             </div>
                         </a>
                         <a class="list-group-item media" href="">
                             <div class="pull-left">
-                                <img class="lgi-img" src="img/profile-pics/2.jpg" alt="">
+                                <img class="lgi-img" src="./wicket/resource/imagenes.Imagenes/userIcon.png" alt="">
                             </div>
                             <div class="media-body">
                                 <div class="lgi-heading">Jonathan Morris</div>
-                                <small class="lgi-text">Nunc quis diam diamurabitur at dolor elementum, dictum turpis vel</small>
+                                <small class="lgi-text">Agrego: Equipo 2</small>
                             </div>
                         </a>
                         <a class="list-group-item media" href="">
                             <div class="pull-left">
-                                <img class="lgi-img" src="img/profile-pics/3.jpg" alt="">
+                                <img class="lgi-img" src="./wicket/resource/imagenes.Imagenes/userIcon.png" alt="">
                             </div>
                             <div class="media-body">
                                 <div class="lgi-heading">Fredric Mitchell Jr.</div>
-                                <small class="lgi-text">Phasellus a ante et est ornare accumsan at vel magnauis blandit turpis at augue ultricies</small>
+                                <small class="lgi-text">Elimino: Material 188</small>
                             </div>
                         </a>
                         <a class="list-group-item media" href="">
                             <div class="pull-left">
-                                <img class="lgi-img" src="img/profile-pics/4.jpg" alt="">
+                                <img class="lgi-img" src="./wicket/resource/imagenes.Imagenes/userIcon.png" alt="">
                             </div>
                             <div class="media-body">
                                 <div class="lgi-heading">Glenn Jecobs</div>
-                                <small class="lgi-text">Ut vitae lacus sem ellentesque maximus, nunc sit amet varius dignissim, dui est consectetur neque</small>
+                                <small class="lgi-text">Agrego: Material 88</small>
                             </div>
                         </a>
                         <a class="list-group-item media" href="">
                             <div class="pull-left">
-                                <img class="lgi-img" src="img/profile-pics/4.jpg" alt="">
+                                <img class="lgi-img" src="./wicket/resource/imagenes.Imagenes/userIcon.png" alt="">
                             </div>
                             <div class="media-body">
                                 <div class="lgi-heading">Bill Phillips</div>
-                                <small class="lgi-text">Proin laoreet commodo eros id faucibus. Donec ligula quam, imperdiet vel ante placerat</small>
+                                <small class="lgi-text">Modifico: Material 88</small>
                             </div>
                         </a>
-                        <a class="view-more" href="">View All</a>
                     </div>
                 </div>
             </div>

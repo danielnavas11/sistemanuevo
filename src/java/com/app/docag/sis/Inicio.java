@@ -84,12 +84,18 @@ public class Inicio extends PaginaWebSIS implements Serializable{
             @Override
             public void onClick(AjaxRequestTarget art) {             
                 log_erp.info("btnacceptar.onClick()");
-            	if(AuthenticatedWebSession.get().signIn(usuariotext, IVDCrypto.encriptaTexto(clavetext))){
-                    setResponsePage(Home.class);   
-		}else{
-                    //error.setDefaultModel(Model.of("usuario invalido"));
-                    //art.add(error);
-                    art.appendJavaScript(IVDMensajesJGROWL.ERPJGrowl.errorlogin("Usuario Invalido. Verifique e intente de nuevo."));
+                if(usuariotext==null || "".equals(usuariotext)){
+                    art.appendJavaScript(IVDMensajesJGROWL.ERPJGrowl.errorlogin("Usuario Invalido."));
+                    art.appendJavaScript("document.getElementById('" + usuario.getMarkupId() + "').focus();");
+                }else if(clavetext ==null || "".equals(clavetext)){
+                    art.appendJavaScript(IVDMensajesJGROWL.ERPJGrowl.errorlogin("Clave Invalida."));
+                    art.appendJavaScript("document.getElementById('" + clave.getMarkupId() + "').focus();");
+                }else{
+                    if(AuthenticatedWebSession.get().signIn(usuariotext, IVDCrypto.encriptaTexto(clavetext))){
+                        setResponsePage(Home.class);   
+                    }else{
+                        art.appendJavaScript(IVDMensajesJGROWL.ERPJGrowl.errorlogin("Usuario Invalido. Verifique e intente de nuevo."));
+                    }
                 }
             }
         };

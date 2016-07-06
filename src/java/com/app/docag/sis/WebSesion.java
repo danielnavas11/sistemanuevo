@@ -20,7 +20,7 @@ public class WebSesion extends AuthenticatedWebSession {
     public boolean authenticate(String username, String password) {
         boolean logeado;
         try{
-            setUsuario(Aplicacion.get().getInicioSesion().getUsuarioLogin(username, username));
+            setUsuario(Aplicacion.get().getInicioSesion().getUsuarioLogin(username, password));
             log_erp.info("usuario:"+getUsuario().getLogeado());
             logeado=getUsuario().getLogeado();
         } catch (Exception ex) {
