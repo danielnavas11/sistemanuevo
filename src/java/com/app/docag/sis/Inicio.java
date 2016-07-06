@@ -2,7 +2,6 @@ package com.app.docag.sis;
 
 import com.app.bootstrap.util.IVDMensajesJGROWL;
 import com.sis.persistencia.criptografia.IVDCrypto;
-import com.sis.persistencia.dao.pojos.Usuario;
 import org.apache.wicket.markup.html.basic.Label;
 import java.io.Serializable;
 import org.apache.wicket.RestartResponseAtInterceptPageException;
@@ -19,6 +18,7 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.resource.PackageResourceReference;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
+import org.apache.wicket.markup.html.panel.Panel;
 
 
 public class Inicio extends PaginaWebSIS implements Serializable{
@@ -43,6 +43,7 @@ public class Inicio extends PaginaWebSIS implements Serializable{
     
     
     public Inicio() { 
+        addOrReplace(new HeaderPanel("headeranel"));
         final Label error=new Label("mensajeslogin", "");
         error.setOutputMarkupId(true);
         add(error);

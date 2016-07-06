@@ -7,7 +7,12 @@ import org.apache.wicket.markup.html.panel.Panel;
 /**
  * @author dnavas
  */
-public class HeaderPanel extends Panel{    
+public class HeaderPanel extends Panel{
+    public HeaderPanel(String id) {
+        super(id);
+        add(new Label("tituloLogo",""));
+        add(new Label("notificaciones", "").setEscapeModelStrings(false));
+    }
     public HeaderPanel(String id,Usuario user,WebSesion getSesionSIS) {
         super(id);
         add(new Label("tituloLogo",getSesionSIS.getValorBundleLocaleIdioma("titulosistema")));
