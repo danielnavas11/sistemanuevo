@@ -2,6 +2,7 @@ package com.app.docag.sis;
 
 import com.app.bootstrap.util.PreloaderBlue;
 import com.app.docag.sis.home.HomeSeccion1;
+import com.app.docag.sis.home.Materiales;
 import java.io.Serializable;
 import org.apache.wicket.RestartResponseAtInterceptPageException;
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
@@ -32,6 +33,9 @@ public class Home extends PaginaWebSIS implements Serializable {
             WebMarkupContainer modalheader = new WebMarkupContainer("headerpic");
             modalheader.add(new AttributeAppender("style","background: url('"+RequestCycle.get().urlFor(new PackageResourceReference(imagenes.Imagenes.class, "user-bg.jpg") , null).toString()+"');"));
             add(modalheader);
+            
+            final Materiales materiales=new Materiales("HomeSeccion1");
+            materiales.setOutputMarkupId(true);
 
             AjaxLink salirsistema=new AjaxLink("salirsistema") {
                 @Override
@@ -51,6 +55,9 @@ public class Home extends PaginaWebSIS implements Serializable {
             home1.setOutputMarkupId(true);
             add(home1);
             
+            final HomeSeccion1 home11=new HomeSeccion1("HomeSeccion1");
+            home11.setOutputMarkupId(true);
+            
             
             AjaxLink verperfil=new AjaxLink("verperfil") {
                 @Override
@@ -61,6 +68,32 @@ public class Home extends PaginaWebSIS implements Serializable {
                 }
             };
             add(verperfil);
+            
+            AjaxLink linkmateriales=new AjaxLink("linkmateriales") {
+                @Override
+                public void onClick(AjaxRequestTarget art) {
+                    if(AuthenticatedWebSession.get().isSignedIn()){
+                        System.out.println("linkmateriales");
+                        this.getParent().addOrReplace(home1);
+                        home1.replaceWith(materiales);
+                        art.add(materiales);
+                    }
+                }
+            };
+            add(linkmateriales);
+            
+            AjaxLink linkhome=new AjaxLink("linkhome") {
+                @Override
+                public void onClick(AjaxRequestTarget art) {
+                    if(AuthenticatedWebSession.get().isSignedIn()){
+                        System.out.println("linkhome");
+                        this.getParent().addOrReplace(home1);
+                        home1.replaceWith(home11);
+                        art.add(home11);
+                    }
+                }
+            };
+            add(linkhome);
 
         }
     }
