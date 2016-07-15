@@ -1,8 +1,8 @@
 package com.app.docag.sis;
 
-import com.app.bootstrap.util.PreloaderBlue;
 import com.app.docag.sis.home.HomeSeccion1;
 import com.app.docag.sis.home.Materiales;
+import com.app.docag.sis.home.Presupuesto;
 import java.io.Serializable;
 import org.apache.wicket.RestartResponseAtInterceptPageException;
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
@@ -16,10 +16,8 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
-import org.apache.wicket.markup.html.basic.Label;
 
 /**
- *
  * @author daniel
  */
 @AuthorizeInstantiation({"USER", "ADMIN"})
@@ -36,6 +34,9 @@ public class Home extends PaginaWebSIS implements Serializable {
             
             final Materiales materiales=new Materiales("HomeSeccion1");
             materiales.setOutputMarkupId(true);
+            
+            final Presupuesto presupuesto=new Presupuesto("HomeSeccion1");
+            presupuesto.setOutputMarkupId(true);
 
             AjaxLink salirsistema=new AjaxLink("salirsistema") {
                 @Override
@@ -68,6 +69,19 @@ public class Home extends PaginaWebSIS implements Serializable {
                 }
             };
             add(verperfil);
+            
+            AjaxLink linkpresupuesto=new AjaxLink("linkpresupuesto") {
+                @Override
+                public void onClick(AjaxRequestTarget art) {
+                    if(AuthenticatedWebSession.get().isSignedIn()){
+                        System.out.println("linkpresupuesto");
+                        this.getParent().addOrReplace(home1);
+                        home1.replaceWith(presupuesto);
+                        art.add(presupuesto);
+                    }
+                }
+            };
+            add(linkpresupuesto);
             
             AjaxLink linkmateriales=new AjaxLink("linkmateriales") {
                 @Override
