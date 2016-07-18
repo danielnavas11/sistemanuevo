@@ -7,5 +7,6 @@
 	
         <!-- List of XML mapping files -->
 	<mapping resource="com/sis/persistencia/beans/xml/Usuario.xml" />
+        <mapping resource="com/sis/persistencia/beans/xml/Idioma.xml" />
     </session-factory>
 </hibernate-configuration>

@@ -32,6 +32,7 @@ public class WebSesion extends AuthenticatedWebSession {
     
     @Override
     public void signOut() {
+        setUsuario(null);
         super.signOut();
     }
 

@@ -1,0 +1,39 @@
+<html xmlns:wicket>
+<body>
+<wicket:panel>
+    <div class="row">
+        <div class="col-sm-6">
+            <ul class="pagination pagination-sm">
+                <li class="first" aria-disabled="false">
+                    <a class="button" data-page="first" wicket:id="first">
+                        <i class="zmdi zmdi-more-horiz"></i>
+                    </a>
+                </li>
+                <li class="prev" aria-disabled="false">
+                    <a class="button" data-page="prev" wicket:id="prev">
+                        <i class="zmdi zmdi-chevron-left"></i>
+                    </a>
+                </li>
+                <li class="page-1" aria-disabled="false" aria-selected="true">
+                    <span wicket:id="navigation">
+                        <a wicket:id="pageLink" href="#">
+                            <span wicket:id="pageNumber">5</span>
+                        </a>                        
+                    </span>
+                </li>
+                <li class="next" aria-disabled="false">
+                    <a class="button" data-page="next" wicket:id="next">
+                        <i class="zmdi zmdi-chevron-right"></i>
+                    </a>
+                </li>
+                <li class="last" aria-disabled="false">
+                    <a class="button" data-page="last" wicket:id="last">
+                        <i class="zmdi zmdi-more-horiz"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</wicket:panel>
+</body>
+</html>

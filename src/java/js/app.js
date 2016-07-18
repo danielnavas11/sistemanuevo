@@ -1,4 +1,10 @@
 $(document).ready(function (e) {
+    // FULL SCREEN MENU (Layout 02)
+    $('.menu-sidebar-collapse').sideNav({
+        menuWidth: 240,
+        edge: 'left', // Choose the horizontal origin     
+        //defaultOpen:true // Set if default menu open is true
+    });
     // Fullscreen
     function toggleFullScreen() {
         if ((document.fullScreenElement && document.fullScreenElement !== null) ||
@@ -43,6 +49,10 @@ $(document).ready(function (e) {
 
 
 $(document).ready(function () {
+    // Materialize Tabs
+    $('.tab-demo').show().tabs();
+    $('.tab-demo-active').show().tabs();
+  
     $("body").on("click", "[data-ma-action]", function (e) {
         e.preventDefault();
         var $this = $(this);
@@ -186,5 +196,4 @@ function notify(mensaje, from, align, icon, type, animIn, animOut) {
                 '<a href="#" data-growl="url"></a>' +
                 '</div>'
     });
-}
-;
+};
