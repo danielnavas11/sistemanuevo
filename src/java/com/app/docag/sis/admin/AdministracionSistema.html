@@ -2,7 +2,7 @@
     <div id="basic-tabs" class="section">
         <div class="row">
             
-            <div class="col s12 m8 l12">
+            <div class="col">
 
                 <div class="row">
                     <div class="col s12">
@@ -35,32 +35,7 @@
                     </div>
                     <div class="col s12">
                         <div style="display: block;" id="idi" class="col s12">
-                            <table class="table table-inner table-vmiddle">
-                                <thead>
-                                    <tr>
-                                        <th style="text-transform: none;">
-                                            ID
-                                        </th>
-                                        <th style="text-transform: none;">Siglas</th>
-                                        <th style="text-transform: none;">Descripcion</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr wicket:id="rowsIdiomas">
-                                        <td><span wicket:id="idioma_idioma" /></td>
-                                        <td><span wicket:id="idioma_siglas" /></td>
-                                        <td><span wicket:id="idioma_nombre" /></td>
-                                        <td class ="">
-                                            <button wicket:id="dataRowEditar" type="button" class="btnanimadocomandoedit btn btn-icon waves-effect command-edit waves-circle" data-row-id="" id="btnanimadocomandoedit">
-                                                <span class="zmdi zmdi-edit"></span>
-                                            </button>
-                                        </td>
-                                        <!--<td wicket:id="dataRowIdiomas"></td>-->
-                                        
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div wicket:id="pagingNavigator" class="bootgrid-footer container-fluid"></div>
+                            <div wicket:id="tabidiomas"></div>
                         </div>
                         <div style="display: none;" id="mn" class="col s12">
                             <dl>
