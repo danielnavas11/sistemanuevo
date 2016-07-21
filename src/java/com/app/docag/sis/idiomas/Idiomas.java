@@ -1,6 +1,7 @@
 package com.app.docag.sis.idiomas;
 
 import com.app.bootstrap.util.IVDAjaxPagingNavigator;
+import com.app.bootstrap.util.IVDMensajesJGROWL;
 import com.app.docag.sis.WebSesion;
 import com.sis.persistencia.dao.pojos.Idioma;
 import com.sis.persistencia.h.IdiomaH;
@@ -35,7 +36,7 @@ public class Idiomas extends Panel {
         super(id);
         listaIdiomas=idiomaImpl.getAllIdiomas();
         final ModalEditarIdiomas modaleditaridiomas=new ModalEditarIdiomas("modaleditaridiomas",null);
-        modaleditaridiomas.setTitulo("Editar Idioma");
+        //modaleditaridiomas.setTitulo("Editar Idioma");
         modaleditaridiomas.addButton(new AjaxLink<String>("button", Model.of(getSesion().getValorBundleLocaleIdioma("inicio.configurar.boton.cerrar"))) {
             @Override
             protected void onConfigure() {
@@ -55,8 +56,10 @@ public class Idiomas extends Panel {
             }
              @Override
             public void onClick(AjaxRequestTarget art) {
-                if(modaleditaridiomas.getTxtidiomasiglas_valor().equals("")){
+                if(!modaleditaridiomas.getTxtidiomasiglas_valor().equals("")){
                     System.out.println("getTxtidiomasiglas_valor:"+modaleditaridiomas.getTxtidiomasiglas_valor());
+                }else{
+                    art.appendJavaScript(IVDMensajesJGROWL.ERPJGrowl.errorlogin("El campo Siglas del Idioma no puede estar vacio."));
                 }
             }
         });

@@ -142,4 +142,10 @@ public class ModalEditarIdiomas extends ModalBootstrap implements Serializable{
     public ModalBootstrap show(AjaxRequestTarget target) {
         return super.show(target);
     }
+
+    @Override
+    public ModalBootstrap setHeaderVisible(boolean visible) {
+        return super.setHeaderVisible(visible);
+    }
+    
 }

@@ -66,8 +66,11 @@ public class Inicio extends PaginaWebSIS implements Serializable{
                 usuariotext=usuario.getInput();
             }
         });
-        usuario.add(new AttributeAppender("placeholder", getSesionSIS().getValorBundleLocaleIdioma("inicio.usuario")));
+        //usuario.add(new AttributeAppender("placeholder", getSesionSIS().getValorBundleLocaleIdioma("inicio.usuario")));
         form_login.add(usuario);
+        
+        Label usuariolabel=new Label("usuariolabel", Model.of(""+getSesionSIS().getValorBundleLocaleIdioma("inicio.usuario")));
+        form_login.add(usuariolabel);
         
         clave = new PasswordTextField("clave",Model.of(""));
         clave.setRequired(true);
@@ -78,8 +81,11 @@ public class Inicio extends PaginaWebSIS implements Serializable{
                 clavetext=clave.getInput();
             }
         });
-        clave.add(new AttributeAppender("placeholder", getSesionSIS().getValorBundleLocaleIdioma("inicio.clave")));
+        //clave.add(new AttributeAppender("placeholder", getSesionSIS().getValorBundleLocaleIdioma("inicio.clave")));
         form_login.add(clave);
+        
+        Label clavelabel=new Label("clavelabel", Model.of(""+getSesionSIS().getValorBundleLocaleIdioma("inicio.clave")));
+        form_login.add(clavelabel);
                
         AjaxLink btnacceptar=new AjaxLink("btnacceptar") {            
             @Override

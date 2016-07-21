@@ -32,11 +32,13 @@
                     <div class="modal-body">                        
                         <div wicket:id="mensajeslogin">[mensajeslogin]</div>
                         <form class="form col-md-12 center-block" wicket:id="form_login">
-                            <div class="form-group">
-                                <input class="form-control input-lg" placeholder="" wicket:id="usuario" type="text"/>
+                            <div class="input-field col s12">
+                                <input class="form-control input-small" id="usuario" wicket:id="usuario" type="text"/>
+                                <label class="" for="usuario" wicket:id="usuariolabel">usuario</label>
                             </div>
-                            <div class="form-group">
-                                <input class="form-control input-lg" placeholder="" wicket:id="clave" type="password"/>
+                            <div class="input-field col s12">
+                                <input class="form-control input-small"  wicket:id="clave" type="password"/>
+                                <label class="" for="usuario" wicket:id="clavelabel">usuario</label>
                             </div><br><br>
                             <div class="form-group">
                                 <a wicket:id="btnacceptar" class="btn btn-primary btn-lg btn-block" role="button">

@@ -1,6 +1,6 @@
 <wicket:panel>        
     <div wicket:id="dialog">
-        <div wicket:id="header" class="modal-header">
+        <div wicket:id="header" class="modal-header" style="display: none;">
             <a class="close" data-dismiss="modal">&times;</a>
             <h5 wicket:id="header-label" class="modal-title">Titulo</h5>
         </div>
@@ -8,9 +8,11 @@
             <wicket:child/>
         </div>
         <div class="modal-footer" wicket:id="footer">
-            <wicket:fragment wicket:id="buttons">
-                <button type="button" wicket:id="button"></button>
-            </wicket:fragment>
+            <div class="btn-demo">
+                <wicket:fragment wicket:id="buttons">
+                    <button type="button" wicket:id="button" style="margin: 0 5px 10px 0;"></button>
+                </wicket:fragment>
+            </div>
         </div>
     </div>
 </wicket:panel>

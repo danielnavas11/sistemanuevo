@@ -204,7 +204,7 @@ public class ModalBootstrap extends GenericPanel {
         button.add(new AttributeModifier("class", new AbstractReadOnlyModel<String>() {
             @Override
             public String getObject () {
-                return "btn";
+                return "btn btn-default waves-effect";
             }
         }));
         buttons.add(button);
