@@ -18,69 +18,82 @@ import org.apache.wicket.util.lang.Objects;
 /**
  * @author daniel
  */
-public class ModalEditarIdiomas extends ModalBootstrap implements Serializable{
-   /** Objeto enviado por parámetro */
-   Idioma idioma;
-   Form editarform;
-   private MarkupContainer contenido;
-   TextField<String> txtidiomasiglas,txtidiomanombre;
-   String txtidiomasiglas_valor,txtidiomanombre_valor;
-   Object obj;
-   Label lblididioma;
-   public WebSesion getSesion() {
+public class ModalEditarIdiomas extends ModalBootstrap implements Serializable {
+
+    /**
+     * Objeto enviado por parámetro
+     */
+    private Idioma idioma;
+    Form editarform;
+    private MarkupContainer contenido;
+    TextField<String> txtidiomasiglas, txtidiomanombre;
+    String txtidiomasiglas_valor, txtidiomanombre_valor;
+    Object obj;
+    Label lblididioma;
+
+    public WebSesion getSesion() {
         return (WebSesion) getSession();
     }
-   public ModalEditarIdiomas(String id){
-       super(id);
-   }
 
-   public ModalEditarIdiomas(String id, Object obj){
-       super(id);
-       contenido = new WebMarkupContainer("content");
-       contenido.setOutputMarkupId(true);
-       editarform = new Form("EditarIdiomas");
-       lblididioma=new Label("EditarIdiomasId","");
-       lblididioma.setOutputMarkupId(true);
-       editarform.add(lblididioma);
-       
-       txtidiomasiglas = new TextField<String>("EditarIdiomasSiglas",Model.of(""));
-       txtidiomasiglas.setOutputMarkupId(true);
-       txtidiomasiglas.add(new OnChangeAjaxBehavior(){
+    public ModalEditarIdiomas(String id) {
+        super(id);
+    }
+
+    public ModalEditarIdiomas(String id, Object obj) {
+        super(id);
+        contenido = new WebMarkupContainer("content");
+        contenido.setOutputMarkupId(true);
+        editarform = new Form("EditarIdiomas");
+        lblididioma = new Label("EditarIdiomasId", "");
+        lblididioma.setOutputMarkupId(true);
+        editarform.add(lblididioma);
+
+        txtidiomasiglas = new TextField<String>("EditarIdiomasSiglas", Model.of(""));
+        txtidiomasiglas.setOutputMarkupId(true);
+        txtidiomasiglas.add(new OnChangeAjaxBehavior() {
             @Override
             protected void onUpdate(AjaxRequestTarget art) {
-                txtidiomasiglas_valor=Objects.stringValue(((TextField<String>) getComponent()).getInput(), true);
+                txtidiomasiglas_valor = Objects.stringValue(((TextField<String>) getComponent()).getInput(), true);
                 art.add(txtidiomasiglas.setDefaultModel(Model.of(txtidiomasiglas_valor)));
             }
-            
-        });    
-       
-       txtidiomanombre = new TextField<String>("EditarIdiomasNombre",Model.of(""));
-       txtidiomanombre.setOutputMarkupId(true);
-       txtidiomanombre.setRequired(true);
-       txtidiomanombre.add(new OnChangeAjaxBehavior(){
+
+        });
+
+        txtidiomanombre = new TextField<String>("EditarIdiomasNombre", Model.of(""));
+        txtidiomanombre.setOutputMarkupId(true);
+        txtidiomanombre.setRequired(true);
+        txtidiomanombre.add(new OnChangeAjaxBehavior() {
             @Override
             protected void onUpdate(AjaxRequestTarget art) {
-                txtidiomanombre_valor=Objects.stringValue(((TextField<String>) getComponent()).getInput(), true);
+                txtidiomanombre_valor = Objects.stringValue(((TextField<String>) getComponent()).getInput(), true);
                 art.add(txtidiomanombre.setDefaultModel(Model.of(txtidiomanombre_valor)));
             }
-            
-        });    
-       
-       editarform.add(txtidiomasiglas);
-       editarform.add(txtidiomanombre);
-       contenido.add(editarform);
-       add(contenido);
-   }
-   
-   public void setearIdioma(Object obj){  
-       setOutputMarkupId(true);
-       idioma = (Idioma) obj;
-       lblididioma.setDefaultModel(Model.of(""+idioma.getId_idioma()));
-       txtidiomasiglas.setDefaultModel(Model.of(idioma.getSiglas()));
-       txtidiomanombre.setDefaultModel(Model.of(idioma.getIdioma()));
-       setTxtidiomasiglas_valor(""+idioma.getSiglas());
-       setTxtidiomanombre_valor(""+idioma.getIdioma());
-   }
+
+        });
+
+        editarform.add(txtidiomasiglas);
+        editarform.add(txtidiomanombre);
+        contenido.add(editarform);
+        add(contenido);
+    }
+
+    public void setearIdioma(Object obj) {
+        setOutputMarkupId(true);
+        idioma = (Idioma) obj;
+        lblididioma.setDefaultModel(Model.of("" + idioma.getId_idioma()));
+        txtidiomasiglas.setDefaultModel(Model.of(idioma.getSiglas()));
+        txtidiomanombre.setDefaultModel(Model.of(idioma.getIdioma()));
+        setTxtidiomasiglas_valor("" + idioma.getSiglas());
+        setTxtidiomanombre_valor("" + idioma.getIdioma());
+    }
+
+    public Idioma getIdioma() {
+        return idioma;
+    }
+
+    public void setIdioma(Idioma idioma) {
+        this.idioma = idioma;
+    }
 
     public TextField<String> getTxtidiomasiglas() {
         return txtidiomasiglas;
@@ -97,7 +110,7 @@ public class ModalEditarIdiomas extends ModalBootstrap implements Serializable{
     public void setTxtidiomanombre(TextField<String> txtidiomanombre) {
         this.txtidiomanombre = txtidiomanombre;
     }
-   
+
     public String getTxtidiomasiglas_valor() {
         return txtidiomasiglas_valor;
     }
@@ -113,6 +126,7 @@ public class ModalEditarIdiomas extends ModalBootstrap implements Serializable{
     public void setTxtidiomanombre_valor(String txtidiomanombre_valor) {
         this.txtidiomanombre_valor = txtidiomanombre_valor;
     }
+
     @Override
     public ModalBootstrap addCloseButton() {
         return super.addCloseButton();
@@ -127,7 +141,7 @@ public class ModalEditarIdiomas extends ModalBootstrap implements Serializable{
     public void setTitulo(String titulo) {
         super.setTitulo(titulo);
     }
-    
+
     @Override
     public ModalBootstrap addCloseButton(IModel label) {
         return super.addCloseButton(label);
@@ -147,5 +161,5 @@ public class ModalEditarIdiomas extends ModalBootstrap implements Serializable{
     public ModalBootstrap setHeaderVisible(boolean visible) {
         return super.setHeaderVisible(visible);
     }
-    
+
 }

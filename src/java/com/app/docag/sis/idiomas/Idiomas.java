@@ -11,6 +11,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.Item;
@@ -28,12 +29,16 @@ public class Idiomas extends Panel {
     private List<Idioma> listaIdiomas = new ArrayList<Idioma>();
     @SpringBean
     private IdiomaH idiomaImpl;
+    DataView<Idioma> dataView;
+    ListDataProvider<Idioma> listDataProviderIdiomas;
     public WebSesion getSesion() {
         return (WebSesion) getSession();
     }
     
     public Idiomas(String id) {
         super(id);
+        final WebMarkupContainer tbodyIdiomas = new WebMarkupContainer("tbodyIdiomas"); 
+        tbodyIdiomas.setOutputMarkupId(true);
         listaIdiomas=idiomaImpl.getAllIdiomas();
         final ModalEditarIdiomas modaleditaridiomas=new ModalEditarIdiomas("modaleditaridiomas",null);
         //modaleditaridiomas.setTitulo("Editar Idioma");
@@ -56,8 +61,13 @@ public class Idiomas extends Panel {
             }
              @Override
             public void onClick(AjaxRequestTarget art) {
-                if(!modaleditaridiomas.getTxtidiomasiglas_valor().equals("")){
+                if(!modaleditaridiomas.getTxtidiomasiglas_valor().equals("")){                    
                     System.out.println("getTxtidiomasiglas_valor:"+modaleditaridiomas.getTxtidiomasiglas_valor());
+                    boolean up=idiomaImpl.guardarIdioma(modaleditaridiomas.getIdioma());
+                    System.out.println("up:"+up);
+                    listaIdiomas.clear();
+                    listaIdiomas.addAll(idiomaImpl.getAllIdiomas());
+                    art.add(tbodyIdiomas);
                 }else{
                     art.appendJavaScript(IVDMensajesJGROWL.ERPJGrowl.errorlogin("El campo Siglas del Idioma no puede estar vacio."));
                 }
@@ -66,8 +76,8 @@ public class Idiomas extends Panel {
         modaleditaridiomas.setOutputMarkupId(true);
         add(modaleditaridiomas);
         System.out.println("listaIdiomas:"+listaIdiomas);
-        ListDataProvider<Idioma> listDataProviderIdiomas = new ListDataProvider<Idioma>(listaIdiomas);
-        DataView<Idioma> dataView = new DataView<Idioma>("rowsIdiomas", listDataProviderIdiomas) {
+        listDataProviderIdiomas = new ListDataProvider<Idioma>(listaIdiomas);
+        dataView = new DataView<Idioma>("rowsIdiomas", listDataProviderIdiomas) {
             @Override
             protected void populateItem(final Item<Idioma> item) {
                 final Idioma idi = item.getModelObject();
@@ -92,7 +102,8 @@ public class Idiomas extends Panel {
             }
         };
         dataView.setItemsPerPage(6);
-        add(dataView);
+        dataView.setOutputMarkupId(true);
+        add(tbodyIdiomas.add(dataView));
         add(new IVDAjaxPagingNavigator("pagingNavigator", dataView));
     }
     

@@ -1,8 +1,25 @@
-@media (min-width:768px) {
-    .modal {
-      width: 40%; 
-    }
-  }
+
+#modaleditaridiomas {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  background-color: #fafafa;
+  padding: 0;
+  max-height: 45%;
+  width: 25%;
+  margin: auto;
+  overflow-y: auto;
+  z-index: 1000;
+  border-radius: 2px;
+  -webkit-transform: translate(0);
+  -moz-transform: translate(0);
+  -ms-transform: translate(0);
+  -o-transform: translate(0);
+  transform: translate(0);
+  will-change: top, opacity; 
+}
+
 input[type="text"], input[type="password"], input[type="email"], input[type="url"], input[type="time"], input[type="date"], input[type="datetime-local"], input[type="tel"], input[type="number"], input[type="search"], textarea.materialize-textarea {
     -moz-border-bottom-colors: none;
     -moz-border-left-colors: none;
@@ -3636,10 +3653,19 @@ a.waves-effect .waves-ripple {
   -ms-transform: translate(0);
   -o-transform: translate(0);
   transform: translate(0);
-  will-change: top, opacity; }
+  will-change: top, opacity; 
+}
   @media only screen and (max-width: 992px) {
     .modal {
-      width: 80%; }
+      width: 80%; 
+    }
+    #modaleditaridiomas{
+        width: 80%; 
+    }
+    .modal-dialog{
+        width: auto;
+    }
+    
   }
   .modal h1, .modal h2, .modal h3, .modal h4 {
     margin-top: 0; }
