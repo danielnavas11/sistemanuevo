@@ -13,6 +13,7 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.util.lang.Objects;
 
 /**
@@ -48,7 +49,7 @@ public class ModalEditarIdiomas extends ModalBootstrap implements Serializable {
         lblididioma.setOutputMarkupId(true);
         editarform.add(lblididioma);
 
-        txtidiomasiglas = new TextField<String>("EditarIdiomasSiglas", Model.of(""));
+        txtidiomasiglas = new TextField<String>("EditarIdiomasSiglas", new PropertyModel<String>(this, "txtidiomasiglas_valor"));
         txtidiomasiglas.setOutputMarkupId(true);
         txtidiomasiglas.add(new OnChangeAjaxBehavior() {
             @Override
@@ -59,9 +60,8 @@ public class ModalEditarIdiomas extends ModalBootstrap implements Serializable {
 
         });
 
-        txtidiomanombre = new TextField<String>("EditarIdiomasNombre", Model.of(""));
+        txtidiomanombre = new TextField<String>("EditarIdiomasNombre", new PropertyModel<String>(this, "txtidiomanombre_valor"));
         txtidiomanombre.setOutputMarkupId(true);
-        txtidiomanombre.setRequired(true);
         txtidiomanombre.add(new OnChangeAjaxBehavior() {
             @Override
             protected void onUpdate(AjaxRequestTarget art) {

@@ -61,21 +61,26 @@ public class Idiomas extends Panel {
             }
              @Override
             public void onClick(AjaxRequestTarget art) {
-                if(!modaleditaridiomas.getTxtidiomasiglas_valor().equals("")){                    
-                    System.out.println("getTxtidiomasiglas_valor:"+modaleditaridiomas.getTxtidiomasiglas_valor());
-                    boolean up=idiomaImpl.guardarIdioma(modaleditaridiomas.getIdioma());
-                    System.out.println("up:"+up);
-                    listaIdiomas.clear();
-                    listaIdiomas.addAll(idiomaImpl.getAllIdiomas());
-                    art.add(tbodyIdiomas);
+                if(modaleditaridiomas.getTxtidiomanombre_valor().equals("") ){
+                    art.appendJavaScript(IVDMensajesJGROWL.ERPJGrowl.errorlogin("El nombre del Idioma no puede estar vacio."));
+                }else if(modaleditaridiomas.getTxtidiomasiglas_valor().equals("")){
+                    art.appendJavaScript(IVDMensajesJGROWL.ERPJGrowl.errorlogin("El campo Sigla del Idioma no puede estar vacio."));
                 }else{
-                    art.appendJavaScript(IVDMensajesJGROWL.ERPJGrowl.errorlogin("El campo Siglas del Idioma no puede estar vacio."));
+                    Idioma idiedit=new Idioma(modaleditaridiomas.getIdioma().getId_idioma(), modaleditaridiomas.getTxtidiomanombre_valor(),modaleditaridiomas.getTxtidiomasiglas_valor());
+                    boolean res=idiomaImpl.guardarIdioma(idiedit);
+                    if(res){
+                        listaIdiomas.clear();
+                        listaIdiomas.addAll(idiomaImpl.getAllIdiomas());
+                        modaleditaridiomas.appendCloseDialogJavaScript(art);
+                        art.add(tbodyIdiomas);
+                    }else{
+                        art.appendJavaScript(IVDMensajesJGROWL.ERPJGrowl.errorlogin("El Idioma no se pudo actualizar."));
+                    }                    
                 }
             }
         });
         modaleditaridiomas.setOutputMarkupId(true);
         add(modaleditaridiomas);
-        System.out.println("listaIdiomas:"+listaIdiomas);
         listDataProviderIdiomas = new ListDataProvider<Idioma>(listaIdiomas);
         dataView = new DataView<Idioma>("rowsIdiomas", listDataProviderIdiomas) {
             @Override
@@ -91,8 +96,8 @@ public class Idiomas extends Panel {
                 lbl.add(new AjaxEventBehavior("onclick") {
                     @Override
                     protected void onEvent(AjaxRequestTarget art) {
-                        System.out.println("click "+idi.getId_idioma());
                         modaleditaridiomas.setearIdioma(idi);
+                        
                         art.add(modaleditaridiomas);
                         modaleditaridiomas.show(art);
                     }
