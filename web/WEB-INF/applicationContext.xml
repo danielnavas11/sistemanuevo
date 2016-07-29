@@ -41,7 +41,9 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
         </property>
         <property name="annotatedClasses">
             <list>
-                <value>com.sis.persistencia.dao.pojos.Idioma</value>                
+                <value>com.sis.persistencia.dao.pojos.Idioma</value>
+                <value>com.sis.persistencia.dao.pojos.Moneda</value>
+                <value>com.sis.persistencia.dao.pojos.Proyecto</value>             
             </list>
         </property>
     </bean>
@@ -60,6 +62,11 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
     <bean id="Idioma" class="com.sis.persistencia.h.IdiomaImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-    
+    <bean id="Moneda" class="com.sis.persistencia.h.MonedaImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="Proyecto" class="com.sis.persistencia.h.ProyectoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
     
 </beans>

@@ -1,5 +1,26 @@
 
-#modaleditaridiomas {
+#modaleditaridiomas,#modalagregarproyecto {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  background-color: #fafafa;
+  padding: 0;
+  max-height: 45%;
+  width: 25%;
+  margin: auto;
+  overflow-y: auto;
+  z-index: 1000;
+  border-radius: 2px;
+  -webkit-transform: translate(0);
+  -moz-transform: translate(0);
+  -ms-transform: translate(0);
+  -o-transform: translate(0);
+  transform: translate(0);
+  will-change: top, opacity; 
+}
+
+#modaleditarmonedas {
   display: none;
   position: fixed;
   left: 0;
@@ -3659,7 +3680,7 @@ a.waves-effect .waves-ripple {
     .modal {
       width: 80%; 
     }
-    #modaleditaridiomas{
+    #modaleditaridiomas,#modaleditarmonedas,#modalagregarproyecto {
         width: 80%; 
     }
     .modal-dialog{

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.sis.persistencia.dao.pojos.Moneda" table="moneda">
+        <id name="id_moneda" type="java.lang.Integer" column="id_moneda">
+            <generator class="sequence"> 
+                <param name="sequence">moneda_id_moneda_seq</param>  
+            </generator>
+        </id>
+        <property name="moneda" type="string"/>
+        
+    </class>
+</hibernate-mapping>

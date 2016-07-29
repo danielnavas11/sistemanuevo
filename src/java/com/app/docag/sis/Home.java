@@ -4,6 +4,7 @@ import com.app.docag.sis.admin.AdministracionSistema;
 import com.app.docag.sis.home.HomeSeccion1;
 import com.app.docag.sis.home.Materiales;
 import com.app.docag.sis.home.Presupuesto;
+import com.app.docag.sis.home.Proyectos;
 import java.io.Serializable;
 import org.apache.wicket.RestartResponseAtInterceptPageException;
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
@@ -61,6 +62,24 @@ public class Home extends PaginaWebSIS implements Serializable {
                 }
             };
             add(verperfil);
+            
+            
+            AjaxLink linkproyecto=new AjaxLink("linkproyecto") {
+                @Override
+                public void onClick(AjaxRequestTarget art) {
+                    if(AuthenticatedWebSession.get().isSignedIn()){
+                        System.out.println("linkpresupuesto");
+                        this.getParent().addOrReplace(home1);
+                        final Proyectos proyecto=new Proyectos("HomeSeccion1");
+                        proyecto.setOutputMarkupId(true);
+                        home1.replaceWith(proyecto);
+                        art.add(proyecto);
+                    }else{
+                        cerrarSesion();
+                    }
+                }
+            };
+            add(linkproyecto);
             
             AjaxLink linkpresupuesto=new AjaxLink("linkpresupuesto") {
                 @Override

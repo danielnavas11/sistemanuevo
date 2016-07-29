@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.sis.persistencia.dao.pojos.Proyecto" table="proyecto">
+        <id name="id_proyecto" type="java.lang.Integer" column="id_proyecto">
+            <generator class="sequence"> 
+                <param name="sequence">proyecto_id_proyecto_seq</param>  
+            </generator>
+        </id>
+        <property name="nombre" type="string"/>
+        <property name="estatus" type="boolean"/>
+        <property name="fecha_creacion" type="date"/>
+        
+    </class>
+</hibernate-mapping>

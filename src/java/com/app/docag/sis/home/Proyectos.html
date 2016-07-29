@@ -1,0 +1,49 @@
+<wicket:panel>
+    <div class="row">
+        <div class="col-sm">
+            <!-- Recent Posts -->
+            <div class="card">
+                <div class="card-header ch-alt m-b-20">
+                    <h2>Proyectos <small>Manejo de Proyectos</small></h2>
+                </div>
+                <div class="card-body m-t-0">
+                    <table class="table-responsive">
+                        <thead wicket:id="theadProyectos">
+                            <tr>
+                                <th style="text-transform: none;">
+                                    ID
+                                </th>
+                                <th style="text-transform: none;">Proyecto</th>
+                                <th style="text-transform: none;">Estatus</th>
+                            </tr>
+                        </thead>
+                        <tbody wicket:id="tbodyProyectos">
+                            <tr wicket:id="rowsProyectos">
+                                <td wicket:id="dataRowProyectos">
+                                </td>
+                            </tr>
+                        <div wicket:id="lbl_mensaje" class="alert alert-info alert-dismissible"></div>
+                        </tbody>
+                    </table>
+                    <div wicket:id="pagingNavigator" class="bootgrid-footer container-fluid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="bottom: 45px; right: 24px;" class="fixed-action-btn">
+        <a class="btn-floating btn-large red">
+            <i class="large zmdi zmdi-edit"></i>
+        </a>
+        <ul>
+            <li>
+                <a class="btn-floating red" wicket:id="agregarproyecto" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px); opacity: 0;">
+                    <i class="large zmdi zmdi-plus">
+                        
+                    </i>
+                </a>
+            </li>
+      </ul>
+    </div>
+    <div wicket:id="modalagregarproyecto" id="modalagregarproyecto" class="modal modal-sm fade " 
+         style="display: none;max-height: 35%;"></div>
+</wicket:panel>
