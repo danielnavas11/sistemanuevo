@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.4.8
 -- Dumped by pg_dump version 9.4.8
--- Started on 2016-07-17 22:35:49 ART
+-- Started on 2016-07-28 22:21:57 ART
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -22,7 +22,7 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 2093 (class 0 OID 0)
+-- TOC entry 2107 (class 0 OID 0)
 -- Dependencies: 1
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
@@ -64,7 +64,7 @@ CREATE SEQUENCE cliente_empresa_id_cliente_empresa_seq
 ALTER TABLE cliente_empresa_id_cliente_empresa_seq OWNER TO postgres;
 
 --
--- TOC entry 2094 (class 0 OID 0)
+-- TOC entry 2108 (class 0 OID 0)
 -- Dependencies: 174
 -- Name: cliente_empresa_id_cliente_empresa_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -117,7 +117,7 @@ CREATE SEQUENCE idioma_id_idioma_seq
 ALTER TABLE idioma_id_idioma_seq OWNER TO postgres;
 
 --
--- TOC entry 2095 (class 0 OID 0)
+-- TOC entry 2109 (class 0 OID 0)
 -- Dependencies: 186
 -- Name: idioma_id_idioma_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -154,7 +154,7 @@ CREATE SEQUENCE moneda_id_moneda_seq
 ALTER TABLE moneda_id_moneda_seq OWNER TO postgres;
 
 --
--- TOC entry 2096 (class 0 OID 0)
+-- TOC entry 2110 (class 0 OID 0)
 -- Dependencies: 176
 -- Name: moneda_id_moneda_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -207,12 +207,51 @@ CREATE SEQUENCE parametros_sistema_id_parametros_sistema_seq
 ALTER TABLE parametros_sistema_id_parametros_sistema_seq OWNER TO postgres;
 
 --
--- TOC entry 2097 (class 0 OID 0)
+-- TOC entry 2111 (class 0 OID 0)
 -- Dependencies: 178
 -- Name: parametros_sistema_id_parametros_sistema_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE parametros_sistema_id_parametros_sistema_seq OWNED BY parametros_sistema.id_parametros_sistema;
+
+
+--
+-- TOC entry 188 (class 1259 OID 44744)
+-- Name: proyecto; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE proyecto (
+    id_proyecto integer NOT NULL,
+    nombre character varying,
+    fecha_creacion timestamp with time zone DEFAULT now() NOT NULL,
+    estatus boolean DEFAULT false NOT NULL
+);
+
+
+ALTER TABLE proyecto OWNER TO postgres;
+
+--
+-- TOC entry 189 (class 1259 OID 44747)
+-- Name: proyecto_id_proyecto_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE proyecto_id_proyecto_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE proyecto_id_proyecto_seq OWNER TO postgres;
+
+--
+-- TOC entry 2112 (class 0 OID 0)
+-- Dependencies: 189
+-- Name: proyecto_id_proyecto_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE proyecto_id_proyecto_seq OWNED BY proyecto.id_proyecto;
 
 
 --
@@ -274,7 +313,7 @@ CREATE SEQUENCE usuario_id_usuario_seq
 ALTER TABLE usuario_id_usuario_seq OWNER TO postgres;
 
 --
--- TOC entry 2098 (class 0 OID 0)
+-- TOC entry 2113 (class 0 OID 0)
 -- Dependencies: 180
 -- Name: usuario_id_usuario_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -312,7 +351,7 @@ CREATE SEQUENCE usuario_pais_id_usuario_pais_seq
 ALTER TABLE usuario_pais_id_usuario_pais_seq OWNER TO postgres;
 
 --
--- TOC entry 2099 (class 0 OID 0)
+-- TOC entry 2114 (class 0 OID 0)
 -- Dependencies: 182
 -- Name: usuario_pais_id_usuario_pais_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -321,7 +360,7 @@ ALTER SEQUENCE usuario_pais_id_usuario_pais_seq OWNED BY usuario_pais.id_usuario
 
 
 --
--- TOC entry 1927 (class 2604 OID 44662)
+-- TOC entry 1934 (class 2604 OID 44662)
 -- Name: id_cliente_empresa; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -329,7 +368,7 @@ ALTER TABLE ONLY cliente_empresa ALTER COLUMN id_cliente_empresa SET DEFAULT nex
 
 
 --
--- TOC entry 1938 (class 2604 OID 44741)
+-- TOC entry 1945 (class 2604 OID 44741)
 -- Name: id_idioma; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -337,7 +376,7 @@ ALTER TABLE ONLY idioma ALTER COLUMN id_idioma SET DEFAULT nextval('idioma_id_id
 
 
 --
--- TOC entry 1928 (class 2604 OID 44664)
+-- TOC entry 1935 (class 2604 OID 44664)
 -- Name: id_moneda; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -345,7 +384,7 @@ ALTER TABLE ONLY moneda ALTER COLUMN id_moneda SET DEFAULT nextval('moneda_id_mo
 
 
 --
--- TOC entry 1929 (class 2604 OID 44666)
+-- TOC entry 1936 (class 2604 OID 44666)
 -- Name: id_parametros_sistema; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -353,7 +392,15 @@ ALTER TABLE ONLY parametros_sistema ALTER COLUMN id_parametros_sistema SET DEFAU
 
 
 --
--- TOC entry 1936 (class 2604 OID 44667)
+-- TOC entry 1946 (class 2604 OID 44749)
+-- Name: id_proyecto; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY proyecto ALTER COLUMN id_proyecto SET DEFAULT nextval('proyecto_id_proyecto_seq'::regclass);
+
+
+--
+-- TOC entry 1943 (class 2604 OID 44667)
 -- Name: id_usuario; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -361,7 +408,7 @@ ALTER TABLE ONLY usuario ALTER COLUMN id_usuario SET DEFAULT nextval('usuario_id
 
 
 --
--- TOC entry 1937 (class 2604 OID 44668)
+-- TOC entry 1944 (class 2604 OID 44668)
 -- Name: id_usuario_pais; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -369,7 +416,7 @@ ALTER TABLE ONLY usuario_pais ALTER COLUMN id_usuario_pais SET DEFAULT nextval('
 
 
 --
--- TOC entry 2071 (class 0 OID 44621)
+-- TOC entry 2083 (class 0 OID 44621)
 -- Dependencies: 173
 -- Data for Name: cliente_empresa; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -377,7 +424,7 @@ ALTER TABLE ONLY usuario_pais ALTER COLUMN id_usuario_pais SET DEFAULT nextval('
 
 
 --
--- TOC entry 2100 (class 0 OID 0)
+-- TOC entry 2115 (class 0 OID 0)
 -- Dependencies: 174
 -- Name: cliente_empresa_id_cliente_empresa_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -386,7 +433,7 @@ SELECT pg_catalog.setval('cliente_empresa_id_cliente_empresa_seq', 1, false);
 
 
 --
--- TOC entry 2082 (class 0 OID 44709)
+-- TOC entry 2094 (class 0 OID 44709)
 -- Dependencies: 184
 -- Data for Name: continente; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -400,18 +447,18 @@ INSERT INTO continente (id_continente, abreviatura, cod_continente, nombre) VALU
 
 
 --
--- TOC entry 2085 (class 0 OID 44738)
+-- TOC entry 2097 (class 0 OID 44738)
 -- Dependencies: 187
 -- Data for Name: idioma; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO idioma (id_idioma, idioma, siglas) VALUES (16, 'ESPAÑOL', 'ESP');
 INSERT INTO idioma (id_idioma, idioma, siglas) VALUES (17, 'PORTUGUES', 'POR');
 INSERT INTO idioma (id_idioma, idioma, siglas) VALUES (18, 'INGLES', 'ENG');
+INSERT INTO idioma (id_idioma, idioma, siglas) VALUES (16, 'ESPAÑOL', 'ESP');
 
 
 --
--- TOC entry 2101 (class 0 OID 0)
+-- TOC entry 2116 (class 0 OID 0)
 -- Dependencies: 186
 -- Name: idioma_id_idioma_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -420,7 +467,7 @@ SELECT pg_catalog.setval('idioma_id_idioma_seq', 18, true);
 
 
 --
--- TOC entry 2073 (class 0 OID 44631)
+-- TOC entry 2085 (class 0 OID 44631)
 -- Dependencies: 175
 -- Data for Name: moneda; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -429,7 +476,7 @@ INSERT INTO moneda (id_moneda, moneda) VALUES (1, 'VEF');
 
 
 --
--- TOC entry 2102 (class 0 OID 0)
+-- TOC entry 2117 (class 0 OID 0)
 -- Dependencies: 176
 -- Name: moneda_id_moneda_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -438,7 +485,7 @@ SELECT pg_catalog.setval('moneda_id_moneda_seq', 1, true);
 
 
 --
--- TOC entry 2081 (class 0 OID 44700)
+-- TOC entry 2093 (class 0 OID 44700)
 -- Dependencies: 183
 -- Data for Name: pais; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -534,7 +581,7 @@ INSERT INTO pais (id_pais, abreviatura, cod_pais, nombre, id_region_continente, 
 
 
 --
--- TOC entry 2075 (class 0 OID 44641)
+-- TOC entry 2087 (class 0 OID 44641)
 -- Dependencies: 177
 -- Data for Name: parametros_sistema; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -542,7 +589,7 @@ INSERT INTO pais (id_pais, abreviatura, cod_pais, nombre, id_region_continente, 
 
 
 --
--- TOC entry 2103 (class 0 OID 0)
+-- TOC entry 2118 (class 0 OID 0)
 -- Dependencies: 178
 -- Name: parametros_sistema_id_parametros_sistema_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -551,7 +598,24 @@ SELECT pg_catalog.setval('parametros_sistema_id_parametros_sistema_seq', 1, fals
 
 
 --
--- TOC entry 2083 (class 0 OID 44716)
+-- TOC entry 2098 (class 0 OID 44744)
+-- Dependencies: 188
+-- Data for Name: proyecto; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2119 (class 0 OID 0)
+-- Dependencies: 189
+-- Name: proyecto_id_proyecto_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('proyecto_id_proyecto_seq', 2, true);
+
+
+--
+-- TOC entry 2095 (class 0 OID 44716)
 -- Dependencies: 185
 -- Data for Name: regioncontinente; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -562,7 +626,7 @@ INSERT INTO regioncontinente (id_region_continente, abreviatura, cod_region_cont
 
 
 --
--- TOC entry 2077 (class 0 OID 44646)
+-- TOC entry 2089 (class 0 OID 44646)
 -- Dependencies: 179
 -- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -571,7 +635,7 @@ INSERT INTO usuario (id_usuario, usuario, password, nombres, apellidos, id_area,
 
 
 --
--- TOC entry 2104 (class 0 OID 0)
+-- TOC entry 2120 (class 0 OID 0)
 -- Dependencies: 180
 -- Name: usuario_id_usuario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -580,7 +644,7 @@ SELECT pg_catalog.setval('usuario_id_usuario_seq', 1, true);
 
 
 --
--- TOC entry 2079 (class 0 OID 44657)
+-- TOC entry 2091 (class 0 OID 44657)
 -- Dependencies: 181
 -- Data for Name: usuario_pais; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -589,7 +653,7 @@ INSERT INTO usuario_pais (id_usuario_pais, id_usuario, id_pais) VALUES (1, 1, 1)
 
 
 --
--- TOC entry 2105 (class 0 OID 0)
+-- TOC entry 2121 (class 0 OID 0)
 -- Dependencies: 182
 -- Name: usuario_pais_id_usuario_pais_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -598,7 +662,7 @@ SELECT pg_catalog.setval('usuario_pais_id_usuario_pais_seq', 1, true);
 
 
 --
--- TOC entry 1940 (class 2606 OID 44671)
+-- TOC entry 1950 (class 2606 OID 44671)
 -- Name: cliente_empresa_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -607,7 +671,7 @@ ALTER TABLE ONLY cliente_empresa
 
 
 --
--- TOC entry 1952 (class 2606 OID 44715)
+-- TOC entry 1962 (class 2606 OID 44715)
 -- Name: continente_cod; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -616,7 +680,7 @@ ALTER TABLE ONLY continente
 
 
 --
--- TOC entry 1954 (class 2606 OID 44713)
+-- TOC entry 1964 (class 2606 OID 44713)
 -- Name: continente_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -625,7 +689,7 @@ ALTER TABLE ONLY continente
 
 
 --
--- TOC entry 1958 (class 2606 OID 44743)
+-- TOC entry 1968 (class 2606 OID 44743)
 -- Name: idioma_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -634,7 +698,7 @@ ALTER TABLE ONLY idioma
 
 
 --
--- TOC entry 1942 (class 2606 OID 44675)
+-- TOC entry 1952 (class 2606 OID 44675)
 -- Name: moneda_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -643,7 +707,7 @@ ALTER TABLE ONLY moneda
 
 
 --
--- TOC entry 1950 (class 2606 OID 44704)
+-- TOC entry 1960 (class 2606 OID 44704)
 -- Name: pais_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -652,7 +716,7 @@ ALTER TABLE ONLY pais
 
 
 --
--- TOC entry 1944 (class 2606 OID 44679)
+-- TOC entry 1954 (class 2606 OID 44679)
 -- Name: parametros_sistema_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -661,7 +725,16 @@ ALTER TABLE ONLY parametros_sistema
 
 
 --
--- TOC entry 1956 (class 2606 OID 44720)
+-- TOC entry 1970 (class 2606 OID 44754)
+-- Name: proyecto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY proyecto
+    ADD CONSTRAINT proyecto_pkey PRIMARY KEY (id_proyecto);
+
+
+--
+-- TOC entry 1966 (class 2606 OID 44720)
 -- Name: regioncontinente_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -670,7 +743,7 @@ ALTER TABLE ONLY regioncontinente
 
 
 --
--- TOC entry 1948 (class 2606 OID 44681)
+-- TOC entry 1958 (class 2606 OID 44681)
 -- Name: usuario_pais_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -679,7 +752,7 @@ ALTER TABLE ONLY usuario_pais
 
 
 --
--- TOC entry 1946 (class 2606 OID 44683)
+-- TOC entry 1956 (class 2606 OID 44683)
 -- Name: usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -688,7 +761,7 @@ ALTER TABLE ONLY usuario
 
 
 --
--- TOC entry 1961 (class 2606 OID 44721)
+-- TOC entry 1973 (class 2606 OID 44721)
 -- Name: $1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -697,7 +770,7 @@ ALTER TABLE ONLY regioncontinente
 
 
 --
--- TOC entry 1959 (class 2606 OID 44726)
+-- TOC entry 1971 (class 2606 OID 44726)
 -- Name: $1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -706,7 +779,7 @@ ALTER TABLE ONLY pais
 
 
 --
--- TOC entry 1960 (class 2606 OID 44731)
+-- TOC entry 1972 (class 2606 OID 44731)
 -- Name: $2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -715,7 +788,7 @@ ALTER TABLE ONLY pais
 
 
 --
--- TOC entry 2092 (class 0 OID 0)
+-- TOC entry 2106 (class 0 OID 0)
 -- Dependencies: 7
 -- Name: public; Type: ACL; Schema: -; Owner: postgres
 --
@@ -726,9 +799,8 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2016-07-17 22:35:49 ART
+-- Completed on 2016-07-28 22:21:57 ART
 
 --
 -- PostgreSQL database dump complete
 --
-
