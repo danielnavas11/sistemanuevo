@@ -1,7 +1,17 @@
 <wicket:extend>
-    <div wicket:id="contentaddproyecto">        
+    <div wicket:id="contentaddproyecto">     
         <form class="addproyecto" wicket:id="addproyecto" data-toggle="validator" role="form">
-            <input type="text" name="txtproyecto" class="form-control" wicket:id="txtproyecto"><br>
+            
+            <div class="input-field col s12">
+                <input class="form-control input-small" id="txtnombreempresa"  size="50" wicket:id="txtnombreempresa" type="text"/>
+                <label class="" for="txtnombreempresa" wicket:id="txtnombreempresalabel">Nombre Empresa</label>
+            </div>
+            
+            <div class="input-field col s12">
+                <input class="form-control input-small" id="txtproyecto" wicket:id="txtproyecto" type="text"/>
+                <label class="" for="txtproyecto" wicket:id="txtproyectolabel">Nombre Proyecto</label>
+            </div>
+            
         </form>
     </div>
 </wicket:extend>

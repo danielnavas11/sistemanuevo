@@ -2,14 +2,22 @@ package com.app.docag.sis.proyectos;
 
 import com.app.bootstrap.modal.ModalBootstrap;
 import com.app.docag.sis.WebSesion;
+import com.sis.persistencia.dao.pojos.Empresa;
+import com.sis.persistencia.h.EmpresaH;
 import java.io.Serializable;
+import java.util.List;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.form.OnChangeAjaxBehavior;
 import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.apache.wicket.util.lang.Objects;
 
 /**
  * @author daniel
@@ -17,11 +25,18 @@ import org.apache.wicket.model.PropertyModel;
 public class ModalAgregarProyectos extends ModalBootstrap implements Serializable {
     
     Form addform;
-    private MarkupContainer contenido;
+    final private MarkupContainer contenido;
     TextField<String>  txtproyecto;
+    TextField txtnombreempresa;
     
-    String txtproyecto_valor;
+    @SpringBean
+    private EmpresaH empresaImpl;
     
+    final IModel<Empresa> model = new Model<Empresa>();
+    
+    String txtproyecto_valor="",txtnombreempresa_valor="";
+    
+     
     public WebSesion getSesion() {
         return (WebSesion) getSession();
     }
@@ -30,16 +45,66 @@ public class ModalAgregarProyectos extends ModalBootstrap implements Serializabl
         super(id);
         contenido = new WebMarkupContainer("contentaddproyecto");
         contenido.setOutputMarkupId(true);
-        addform = new Form("addproyecto");
+        
+        
+        final List<Empresa> empresas = empresaImpl.getAllEmpresas();        
+        
+        addform = new Form<Void>("addproyecto");
+        
+        txtnombreempresa = new TextField<String>("txtnombreempresa", new PropertyModel<String>(this, "txtnombreempresa_valor"));
+        
+        txtnombreempresa.add(new OnChangeAjaxBehavior() {
+            @Override
+            protected void onUpdate(AjaxRequestTarget art) {
+                txtnombreempresa_valor = Objects.stringValue(((TextField<String>) getComponent()).getInput(), true);
+                art.add(txtnombreempresa.setDefaultModel(Model.of(txtnombreempresa_valor)));
+            }
+
+        });
         
         txtproyecto = new TextField<String>("txtproyecto", new PropertyModel<String>(this, "txtproyecto_valor"));
+        txtproyecto.add(new OnChangeAjaxBehavior() {
+            @Override
+            protected void onUpdate(AjaxRequestTarget art) {
+                txtproyecto_valor = Objects.stringValue(((TextField<String>) getComponent()).getInput(), true);
+                art.add(txtproyecto.setDefaultModel(Model.of(txtproyecto_valor)));
+            }
+
+        });
         
+        Label txtproyectolabel=new Label("txtproyectolabel", Model.of(""+getSesion().getValorBundleLocaleIdioma("sis.proyecto.nombre")));
+        addform.add(txtproyectolabel);
+        
+        Label txtnombreempresalabel=new Label("txtnombreempresalabel", Model.of(""+getSesion().getValorBundleLocaleIdioma("sis.proyecto.nombreempresa")));
+        addform.add(txtnombreempresalabel);
+        
+        addform.add(txtnombreempresa);
         addform.add(txtproyecto);
         
         contenido.add(addform);
         add(contenido);
+        
+        
     }
 
+    public TextField getTxtnombreempresa() {
+        return txtnombreempresa;
+    }
+
+    public void setTxtnombreempresa(TextField txtnombreempresa) {
+        this.txtnombreempresa = txtnombreempresa;
+    }
+
+    
+    
+    public String getTxtnombreempresa_valor() {
+        return txtnombreempresa_valor;
+    }
+
+    public void setTxtnombreempresa_valor(String txtnombreempresa_valor) {
+        this.txtnombreempresa_valor = txtnombreempresa_valor;
+    }
+    
     public TextField<String> getTxtproyecto() {
         return txtproyecto;
     }

@@ -39,12 +39,13 @@ public class IVDMensajesJGROWL implements Serializable {
          */
         public static String info(String mensaje) {
             final StringBuilder jGrowl_texto = new StringBuilder();
-            jGrowl_texto.append("$.growl(\"").append(mensaje).append('\"');
+            /*jGrowl_texto.append("$.growl(\"").append(mensaje).append('\"');
             jGrowl_texto.append(", {");
             jGrowl_texto.append("theme: \'jgrowl-").append("INFO").append("\'");
             jGrowl_texto.append(", sticky: true");
             jGrowl_texto.append("}");
-            jGrowl_texto.append(");");
+            jGrowl_texto.append(");");*/
+            jGrowl_texto.append("info('").append(mensaje).append("');");
             return jGrowl_texto.toString();
 
         }

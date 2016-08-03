@@ -2,10 +2,10 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.sis.persistencia.dao.pojos.Proyecto" table="proyecto">
-        <id name="id_proyecto" type="java.lang.Integer" column="id_proyecto">
+    <class name="com.sis.persistencia.dao.pojos.Empresa" table="empresa">
+        <id name="id_empresa" type="java.lang.Integer" column="id_empresa">
             <generator class="sequence"> 
-                <param name="sequence">proyecto_id_proyecto_seq</param>  
+                <param name="sequence">empresa_id_empresa_seq</param>  
             </generator>
         </id>
         <property name="nombre" type="string"/>

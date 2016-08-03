@@ -76,6 +76,7 @@ public class Monedas extends Panel {
                     if(res){
                         listaMonedas.clear();
                         listaMonedas.addAll(monedaImpl.getAllMonedas());
+                        art.appendJavaScript(IVDMensajesJGROWL.ERPJGrowl.info("Actualizado con Exito!"));
                         modaleditar.appendCloseDialogJavaScript(art);
                         art.add(tbody);
                     }else{

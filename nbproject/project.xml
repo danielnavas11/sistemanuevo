@@ -191,6 +191,10 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
+                    <file>${file.reference.wicketstuff-objectautocomplete-6.3.0.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
                     <file>${file.reference.IVDPersistencia.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>

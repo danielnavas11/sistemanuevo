@@ -71,6 +71,7 @@ public class Idiomas extends Panel {
                     if(res){
                         listaIdiomas.clear();
                         listaIdiomas.addAll(idiomaImpl.getAllIdiomas());
+                        art.appendJavaScript(IVDMensajesJGROWL.ERPJGrowl.info("Actualizado con Exito!"));
                         modaleditaridiomas.appendCloseDialogJavaScript(art);
                         art.add(tbodyIdiomas);
                     }else{

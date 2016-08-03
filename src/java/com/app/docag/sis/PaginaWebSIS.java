@@ -2,6 +2,7 @@ package com.app.docag.sis;
 
 import java.io.Serializable;
 import org.apache.wicket.behavior.AttributeAppender;
+import org.apache.wicket.extensions.ajax.markup.html.autocomplete.AutoCompleteBehavior;
 import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.JavaScriptReferenceHeaderItem;
@@ -13,6 +14,7 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.resource.JavaScriptResourceReference;
 import org.apache.wicket.request.resource.PackageResourceReference;
+import org.apache.wicket.request.resource.ResourceReference;
 
 /** 
  *
@@ -54,6 +56,8 @@ public abstract class PaginaWebSIS extends WebPage implements Serializable{
     }   
     @Override
     public void renderHead(IHeaderResponse response) {   
+        ResourceReference AUTOCOMPLETE_JS = new PackageResourceReference(AutoCompleteBehavior.class, "wicket-autocomplete.js");
+        
         response.render(JavaScriptReferenceHeaderItem.forReference(jquery));
         response.render(JavaScriptReferenceHeaderItem.forReference(bootstrap));
         
@@ -70,5 +74,7 @@ public abstract class PaginaWebSIS extends WebPage implements Serializable{
         response.render(CssHeaderItem.forReference(new PackageResourceReference(css.Css.class, "style2.css")));
         
         response.render(CssHeaderItem.forReference(new PackageResourceReference(materialui.Css.class, "materialize.css")));
+        
+        response.render(JavaScriptReferenceHeaderItem.forReference(AUTOCOMPLETE_JS));
     }
 }

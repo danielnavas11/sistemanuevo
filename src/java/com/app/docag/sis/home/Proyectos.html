@@ -22,7 +22,11 @@
                                 <td wicket:id="dataRowProyectos">
                                 </td>
                             </tr>
-                        <div wicket:id="lbl_mensaje" class="alert alert-info alert-dismissible"></div>
+                            <tr>
+                                <td colspan="4">
+                                    <div wicket:id="lbl_mensaje" class="alert alert-info alert-dismissible"></div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <div wicket:id="pagingNavigator" class="bootgrid-footer container-fluid"></div>
@@ -44,6 +48,6 @@
             </li>
       </ul>
     </div>
-    <div wicket:id="modalagregarproyecto" id="modalagregarproyecto" class="modal modal-sm fade " 
-         style="display: none;max-height: 35%;"></div>
+    <div wicket:id="modalagregarproyecto" id="modalagregarproyecto" class="modal modal-fixed-footer" 
+         style="display: none;max-height: 45%;"></div>
 </wicket:panel>

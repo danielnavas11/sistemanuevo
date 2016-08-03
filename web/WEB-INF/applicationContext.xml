@@ -43,7 +43,8 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
             <list>
                 <value>com.sis.persistencia.dao.pojos.Idioma</value>
                 <value>com.sis.persistencia.dao.pojos.Moneda</value>
-                <value>com.sis.persistencia.dao.pojos.Proyecto</value>             
+                <value>com.sis.persistencia.dao.pojos.Proyecto</value>
+                <value>com.sis.persistencia.dao.pojos.Empresa</value>             
             </list>
         </property>
     </bean>
@@ -66,6 +67,10 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     <bean id="Proyecto" class="com.sis.persistencia.h.ProyectoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="Empresa" class="com.sis.persistencia.h.EmpresaImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     

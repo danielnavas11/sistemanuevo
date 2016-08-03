@@ -10,5 +10,6 @@
         <mapping resource="com/sis/persistencia/beans/xml/Idioma.xml" />
         <mapping resource="com/sis/persistencia/beans/xml/Moneda.xml" />
         <mapping resource="com/sis/persistencia/beans/xml/Proyecto.xml" />
+        <mapping resource="com/sis/persistencia/beans/xml/Empresa.xml" />
     </session-factory>
 </hibernate-configuration>

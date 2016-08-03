@@ -153,6 +153,10 @@ $(document).ready(function () {
 });
 
 
+function info(mensaje) {
+    notify(mensaje,undefined,undefined,undefined,'inverse','animated flipInY','animated flipOutY');
+}
+
 function errorlogin(mensaje) {
     swal("ERROR",mensaje);
 }
