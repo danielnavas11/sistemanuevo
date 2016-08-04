@@ -18,11 +18,12 @@ public class WebSesion extends AuthenticatedWebSession {
 
     @Override
     public boolean authenticate(String username, String password) {
-        boolean logeado;
+        boolean logeado=false;
         try{
             setUsuario(Aplicacion.get().getInicioSesion().getUsuarioLogin(username, password));
-            log_erp.info("usuario:"+getUsuario().getLogeado());
-            logeado=getUsuario().getLogeado();
+            log_erp.info("usuario:"+getUsuario());
+            if(getUsuario()!=null)
+                logeado=getUsuario().getLogeado();
         } catch (Exception ex) {
             logeado=false;
             log_erp.error(ex.getMessage(),ex);

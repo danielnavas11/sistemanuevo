@@ -39,7 +39,7 @@ public abstract class PaginaWebSIS extends WebPage implements Serializable{
     public PaginaWebSIS(IModel model) {
         super(model);
         WebMarkupContainer wicon = new WebMarkupContainer("wicon");
-	wicon.add(new AttributeAppender("href",""+RequestCycle.get().urlFor(new PackageResourceReference(imagenes.Imagenes.class, "DGO.png") , null).toString()));
+	wicon.add(new AttributeAppender("href",""+RequestCycle.get().urlFor(new PackageResourceReference(imagenes.Imagenes.class, "IVD.png") , null).toString()));
 	add(wicon);        
         add(new Label("titulo",getSesionSIS().getValorBundleLocaleIdioma("titulosistema")));
         //add(new Include("header", "MenuNav.html"));
@@ -48,7 +48,7 @@ public abstract class PaginaWebSIS extends WebPage implements Serializable{
     public PaginaWebSIS(){
         super(new Model());
         WebMarkupContainer wicon = new WebMarkupContainer("wicon");
-	wicon.add(new AttributeAppender("href",""+RequestCycle.get().urlFor(new PackageResourceReference(imagenes.Imagenes.class, "DGO.png") , null).toString()));
+	wicon.add(new AttributeAppender("href",""+RequestCycle.get().urlFor(new PackageResourceReference(imagenes.Imagenes.class, "IVD.png") , null).toString()));
 	add(wicon);
         add(new Label("titulo",getSesionSIS().getValorBundleLocaleIdioma("titulosistema")));
         //add(new Include("header", "MenuNav.html"));

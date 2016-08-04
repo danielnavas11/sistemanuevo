@@ -39,6 +39,8 @@ public class Proyectos extends Panel {
     
     private List<Proyecto> listaProyectos = new ArrayList<Proyecto>();
     
+    final private IVDAjaxPagingNavigator pag;
+    
     DataView<Proyecto> dataView;
     ListDataProvider<Proyecto> listDataProviderProyectos;
     public WebSesion getSesion() {
@@ -97,6 +99,7 @@ public class Proyectos extends Panel {
                         lbl_mensaje.add(new AttributeAppender("style","display:none"));
                         tbody.add(lbl_mensaje);
                         tbody.add(dataView);
+                        art.add(pag);
                         art.add(tbody);
                     }else{
                         art.prependJavaScript(IVDMensajesJGROWL.ERPJGrowl.errorlogin("Error al Guardar"));
@@ -152,7 +155,9 @@ public class Proyectos extends Panel {
         dataView.setOutputMarkupId(true);
         add(theadProyectos);
         add(tbody.add(dataView));
-        add(new IVDAjaxPagingNavigator("pagingNavigator", dataView));
+        pag=new IVDAjaxPagingNavigator("pagingNavigator", dataView);
+        pag.setOutputMarkupId(true);
+        add(pag);
         
         AjaxLink agregarproyecto = new AjaxLink("agregarproyecto") {
             @Override
